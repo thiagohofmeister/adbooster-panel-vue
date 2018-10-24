@@ -8,7 +8,7 @@
           <div class="main-section-data">
             <div class="row">
 
-              <SideBarLeft/>
+              <SidebarLeft/>
 
               <TimeLine/>
 
@@ -23,3 +23,13 @@
     </main>
   </div>
 </template>
+
+<script>
+import SidebarLeft from '@/components/Template/SidebarLeft'
+
+export default {
+  components: {
+    SidebarLeft
+  }
+}
+</script>

@@ -1,0 +1,39 @@
+<template>
+  <div class="user-data full-width">
+    <div class="user-profile">
+      <div class="username-dt">
+        <div class="usr-pic">
+          <img src="http://via.placeholder.com/100x100" alt=""/>
+        </div>
+      </div>
+      <div class="user-specs">
+        <h3>John Doe</h3>
+        <span>Graphic Designer at Self Employed</span>
+      </div>
+    </div>
+
+    <ul class="user-fw-status">
+      <li>
+        <h4>Following</h4>
+        <span>34</span>
+      </li>
+      <li>
+        <h4>Followers</h4>
+        <span>155</span>
+      </li>
+      <li>
+        <a href="#" title="">View Profile</a>
+      </li>
+    </ul>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'ProfileResume'
+}
+</script>
+
+<style scoped>
+
+</style>

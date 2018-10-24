@@ -1,5 +1,5 @@
 import Route from './Route'
-import Layout from '@/components/template/Layout'
+import Layout from '@/components/Template/Layout'
 import Dashboard from '@/views/Dashboard'
 
 import AccessError from '@/views/AccessError'
