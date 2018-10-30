@@ -6,7 +6,7 @@
           <img src="http://via.placeholder.com/50x50" alt=""/>
           <div class="usy-name">
             <h3>John Doe</h3>
-            <span><img src="images/clock.png" alt=""/>3 min ago</span>
+            <span><img src="/static/images/clock.png" alt=""/>3 min ago</span>
           </div>
         </div>
         <div class="ed-opts">
@@ -22,8 +22,8 @@
       </div>
       <div class="epi-sec">
         <ul class="descp">
-          <li><img src="images/icon8.png" alt=""/><span>Epic Coder</span></li>
-          <li><img src="images/icon9.png" alt=""/><span>India</span></li>
+          <li><img src="/static/images/icon8.png" alt=""/><span>Epic Coder</span></li>
+          <li><img src="/static/images/icon9.png" alt=""/><span>India</span></li>
         </ul>
         <ul class="bk-links">
           <li><a href="#" title=""><i class="la la-bookmark"></i></a></li>
@@ -51,10 +51,10 @@
         <ul class="like-com">
           <li>
             <a href="#"><i class="la la-heart"></i> Like</a>
-            <img src="images/liked-img.png" alt=""/>
+            <img src="/static/images/liked-img.png" alt=""/>
             <span>25</span>
           </li>
-          <li><a href="#" title="" class="com"><img src="images/com.png" alt=""/> Comment 15</a>
+          <li><a href="#" title="" class="com"><img src="/static/images/com.png" alt=""/> Comment 15</a>
           </li>
         </ul>
         <a><i class="la la-eye"></i>Views 50</a>
@@ -66,10 +66,13 @@
 </template>
 
 <script>
+import CommentsList from '@/components/Template/TimeLine/Comments/List'
 
-  export default {
-    name: 'Announcement'
+export default {
+  components: {
+    CommentsList
   }
+}
 </script>
 
 <style scoped>

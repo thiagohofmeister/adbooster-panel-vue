@@ -1,6 +1,6 @@
 import Route from './Route'
 import Layout from '@/components/Template/Layout'
-import Dashboard from '@/views/Dashboard'
+import TimeLine from '@/views/TimeLine'
 
 import AccessError from '@/views/AccessError'
 import NotFound from '@/views/NotFound'
@@ -12,7 +12,7 @@ import NotFound from '@/views/NotFound'
  */
 const routes = [
   new Route(Layout, '/').setChildren([
-    new Route(Dashboard, '', 'dashboard')
+    new Route(TimeLine, '', 'timeline')
   ]),
   new Route(AccessError, '/accessError'),
   new Route(NotFound, '/notFound'),

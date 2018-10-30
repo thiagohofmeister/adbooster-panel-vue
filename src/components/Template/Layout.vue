@@ -10,12 +10,13 @@
 
               <SidebarLeft/>
 
-              <TimeLine/>
+              <div class="col-lg-6 col-md-8 no-pd">
+                <div class="main-ws-sec">
+                  <router-view/>
+                </div>
+              </div>
 
-              <router-view/>
-
-              <SideBarRight/>
-
+              <SidebarRight/>
             </div>
           </div>
         </div>
@@ -25,11 +26,15 @@
 </template>
 
 <script>
+import Header from '@/components/Template/Header'
 import SidebarLeft from '@/components/Template/SidebarLeft'
+import SidebarRight from '@/components/Template/SidebarRight'
 
 export default {
   components: {
-    SidebarLeft
+    Header,
+    SidebarLeft,
+    SidebarRight
   }
 }
 </script>

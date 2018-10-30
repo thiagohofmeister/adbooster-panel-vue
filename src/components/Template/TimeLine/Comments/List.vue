@@ -12,14 +12,20 @@
       </ul>
     </div>
 
-    <New/>
+    <NewComment/>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'List'
+import Comment from '@/components/Template/TimeLine/Comments/Comment'
+import NewComment from '@/components/Template/TimeLine/Comments/NewComment'
+
+export default {
+  components: {
+    Comment,
+    NewComment
   }
+}
 </script>
 
 <style scoped>

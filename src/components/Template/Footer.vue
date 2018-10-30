@@ -11,8 +11,8 @@
       <li><a href="#" title="">Copyright Policy</a></li>
     </ul>
     <div class="cp-sec">
-      <img src="images/logo2.png" alt=""/>
-      <p><img src="images/cp.png" alt=""/>Copyright 2018</p>
+      <img src="/static/images/logo2.png" alt=""/>
+      <p><img src="/static/images/cp.png" alt=""/>Copyright 2018</p>
     </div>
   </div>
 </template>
