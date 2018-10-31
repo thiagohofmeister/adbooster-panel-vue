@@ -1,6 +1,6 @@
 <template>
   <div class="App">
-    <Header/>
+    <SiteHeader/>
 
     <main>
       <div class="main-section">
@@ -26,13 +26,31 @@
 </template>
 
 <script>
-import Header from '@/components/Template/Header'
+import SiteHeader from '@/components/Template/Header'
 import SidebarLeft from '@/components/Template/SidebarLeft'
 import SidebarRight from '@/components/Template/SidebarRight'
+import Cookie from 'vue-cookie'
 
 export default {
+  mounted () {
+    this.validateAuth()
+  },
+  methods: {
+    validateAuth () {
+      const token = Cookie.get('token')
+
+      if (token === null) {
+        this.$router.push('/signin')
+      }
+    }
+  },
+  watch: {
+    '$route' () {
+      this.validateAuth()
+    }
+  },
   components: {
-    Header,
+    SiteHeader,
     SidebarLeft,
     SidebarRight
   }

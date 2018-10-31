@@ -6,7 +6,7 @@
 
       <FriendshipSuggestionsList/>
 
-      <Footer/>
+      <SiteFooter/>
     </div>
   </div>
 </template>
@@ -14,13 +14,13 @@
 <script>
 import UserProfileResume from '@/components/User/ProfileResume'
 import FriendshipSuggestionsList from '@/components/Friendship/SuggestionList'
-import Footer from '@/components/Template/Footer'
+import SiteFooter from '@/components/Template/Footer'
 
 export default {
   components: {
     UserProfileResume,
     FriendshipSuggestionsList,
-    Footer
+    SiteFooter
   }
 }
 </script>

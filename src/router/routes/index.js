@@ -4,6 +4,7 @@ import TimeLine from '@/views/TimeLine'
 
 import AccessError from '@/views/AccessError'
 import NotFound from '@/views/NotFound'
+import SignIn from '@/views/SignIn'
 
 /**
  * Rotas da aplicação.
@@ -16,6 +17,7 @@ const routes = [
   ]),
   new Route(AccessError, '/accessError'),
   new Route(NotFound, '/notFound'),
+  new Route(SignIn, '/signIn', 'signin'),
   {path: '*', redirect: '/notFound'}
 ]
 
