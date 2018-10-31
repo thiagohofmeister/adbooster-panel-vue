@@ -196,7 +196,7 @@ export default {
     signIn (event) {
       api.authenticate(this.userLogging)
         .then(result => {
-          this.addUser(result.data)
+          this.addUser(result)
           this.$router.push('/')
         })
         .catch(() => notifier.error('Erro ao acessar a conta.', 'Erro'))

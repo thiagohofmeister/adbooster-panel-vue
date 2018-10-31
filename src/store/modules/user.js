@@ -3,7 +3,7 @@ import Cookie from 'vue-cookie'
 export default {
   namespaced: true,
   state: {
-    user: {}
+    user: null
   },
   actions: {
     addUser ({ state, commit }, user) {
@@ -13,9 +13,6 @@ export default {
     logout ({ state, commit }) {
       Cookie.delete('token')
     }
-  },
-  getters: {
-    user: state => state.user
   },
   mutations: {
     addUser (state, userToAdd) {

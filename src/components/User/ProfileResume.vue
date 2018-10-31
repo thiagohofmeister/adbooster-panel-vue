@@ -7,31 +7,34 @@
         </div>
       </div>
       <div class="user-specs">
-        <h3>John Doe</h3>
-        <span>Graphic Designer at Self Employed</span>
+        <h3>{{ user.name }}</h3>
+        <span v-if="user.message">{{ user.message }}</span>
       </div>
     </div>
 
     <ul class="user-fw-status">
       <li>
-        <h4>Following</h4>
+        <h4>Amigos</h4>
         <span>34</span>
       </li>
+
       <li>
-        <h4>Followers</h4>
-        <span>155</span>
-      </li>
-      <li>
-        <a href="#" title="">View Profile</a>
+        <a href="#" title="">Ver perfil</a>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'ProfileResume'
-}
+  import { mapFields } from 'vuex-map-fields'
+
+  export default {
+    computed: {
+      ...mapFields({
+        user: 'user.user'
+      })
+    }
+  }
 </script>
 
 <style scoped>

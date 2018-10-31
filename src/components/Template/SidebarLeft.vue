@@ -12,17 +12,17 @@
 </template>
 
 <script>
-import UserProfileResume from '@/components/User/ProfileResume'
-import FriendshipSuggestionsList from '@/components/Friendship/SuggestionList'
-import SiteFooter from '@/components/Template/Footer'
+  import UserProfileResume from '@/components/User/ProfileResume'
+  import FriendshipSuggestionsList from '@/components/Friendship/SuggestionList'
+  import SiteFooter from '@/components/Template/Footer'
 
-export default {
-  components: {
-    UserProfileResume,
-    FriendshipSuggestionsList,
-    SiteFooter
+  export default {
+    components: {
+      UserProfileResume,
+      FriendshipSuggestionsList,
+      SiteFooter
+    }
   }
-}
 </script>
 
 <style scoped>

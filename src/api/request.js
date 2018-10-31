@@ -10,7 +10,7 @@ instance.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response.status === 401) {
-      Router.push('/401')
+      Router.push('/signin')
     }
     return Promise.reject(error)
   }
