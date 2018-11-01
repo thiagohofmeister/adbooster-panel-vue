@@ -25,13 +25,13 @@
                   <div class="row">
                     <div class="col-lg-12 no-pdd">
                       <div class="sn-field">
-                        <input type="text" v-model="userLogging.email" placeholder="E-mail">
+                        <input type="text" v-model="userLogging.email" name="email" placeholder="E-mail">
                         <i class="la la-user"></i>
                       </div>
                     </div>
                     <div class="col-lg-12 no-pdd">
                       <div class="sn-field">
-                        <input type="password" v-model="userLogging.password" placeholder="Senha">
+                        <input type="password" v-model="userLogging.password" name="senha" placeholder="Senha">
                         <i class="la la-lock"></i>
                       </div>
                     </div>

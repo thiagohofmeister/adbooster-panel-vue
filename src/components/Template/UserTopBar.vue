@@ -1,8 +1,8 @@
 <template>
   <div class="user-account">
     <div class="user-info">
-      <img src="http://via.placeholder.com/30x30" alt=""/>
-      <a href="#" title="">John</a>
+      <img :src="user.image" alt=""/>
+      <a href="#" title="">{{ user.name }}</a>
       <i class="la la-sort-down"/>
     </div>
     <div class="user-account-settingss">
@@ -47,10 +47,19 @@
 </template>
 
 <script>
-export default {
-}
+  import { mapFields } from 'vuex-map-fields'
+
+  export default {
+    computed: {
+      ...mapFields({
+        user: 'user.user'
+      })
+    }
+  }
 </script>
 
-<style scoped>
-
+<style lang="sass" scoped>
+  .user-info
+    img
+      max-width: 30px
 </style>

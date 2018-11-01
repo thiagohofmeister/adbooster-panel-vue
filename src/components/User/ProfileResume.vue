@@ -3,7 +3,7 @@
     <div class="user-profile">
       <div class="username-dt">
         <div class="usr-pic">
-          <img src="http://via.placeholder.com/100x100" alt=""/>
+          <img :src="user.image" alt=""/>
         </div>
       </div>
       <div class="user-specs">
