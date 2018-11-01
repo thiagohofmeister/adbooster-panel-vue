@@ -61,7 +61,7 @@ export default {
 
         api.getUser(token)
           .then(result => this.addUser(result))
-          .catch(() => {})
+          .catch(() => this.$router.push('/signin'))
           .then(() => { this.loading = false })
       } else {
         this.loading = false
