@@ -35,6 +35,11 @@ export default {
     addUser ({ state, commit }, user) {
       commit('fetching', true)
       Cookie.set('token', user.authentication.token)
+
+      if (!user.image) {
+        user.image = '/static/images/no-photo.jpg'
+      }
+
       commit('addUser', user)
     },
     logout ({ state, commit }) {
