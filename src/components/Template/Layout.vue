@@ -5,22 +5,16 @@
       <SiteHeader/>
 
       <main>
-        <div class="main-section">
-          <div class="container-fluid">
-            <div class="main-section-data">
-              <div class="row">
+        <div class="container-fluid">
+          <div class="row">
 
-                <SidebarLeft/>
+            <SidebarLeft/>
 
-                <div class="col-lg-6 col-md-8 no-pd">
-                  <div class="main-ws-sec">
-                    <router-view/>
-                  </div>
-                </div>
-
-                <SidebarRight/>
-              </div>
+            <div class="col-lg-6 col-md-8 no-pd">
+              <router-view/>
             </div>
+
+            <SidebarRight/>
           </div>
         </div>
       </main>
