@@ -18,6 +18,17 @@ export default {
    * @returns {Promise<any>}
    */
   async getUser (token) {
-    return (await request.post(process.env.API_URL + `/user/retrieve`)).data
+    return (await request.post(`/user/retrieve`)).data
+  },
+  /**
+   * Retorna a timeline do usuário.
+   *
+   * @param options
+   * @returns {Promise<any>}
+   */
+  async getTimeLineUser (options) {
+    return (await request.get(`/announcement`, {
+      params: options
+    })).data
   }
 }
