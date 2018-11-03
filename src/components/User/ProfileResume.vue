@@ -16,7 +16,7 @@
       <ul class="user-fw-status">
         <li>
           <h4>Amigos</h4>
-          <span>34</span>
+          <span>{{ user.friends.length }}</span>
         </li>
 
         <li>

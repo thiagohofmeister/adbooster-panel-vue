@@ -8,9 +8,9 @@
 
             <div class="col-md-8">
               <div class="usy-dt">
-                <img :src="announcement.creator.image" alt=""/>
+                <img :src="announcement.impulses[0].owner.image" alt=""/>
                 <div class="usy-name">
-                  <h3>{{ announcement.creator.name }}</h3>
+                  <h3>{{ announcement.impulses[0].owner.name }}</h3>
                   <span><img src="/static/images/clock.png" alt=""/> {{ announcement.updated | moment('from', 'now') }}</span>
                 </div>
               </div>
@@ -243,7 +243,7 @@ export default {
     font-size: 16px
     line-height: 24px
     margin-bottom: 20px
-    
+
   .previous-price
     text-decoration: line-through
 
