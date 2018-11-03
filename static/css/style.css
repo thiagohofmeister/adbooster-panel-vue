@@ -118,12 +118,8 @@ textarea {
 	outline: none;
 }
 section {
-	float: left;
 	width: 100%;
 	position: relative;
-}
-img {
-	float: left;
 }
 p {
 	font-size: 14px;

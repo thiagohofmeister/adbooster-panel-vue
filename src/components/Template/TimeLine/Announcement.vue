@@ -6,7 +6,7 @@
         <div class="post_topbar">
           <div class="row">
 
-            <div class="col-md-8">
+            <div class="col-md-12">
               <div class="usy-dt">
                 <img :src="announcement.sharedBy.image" alt=""/>
                 <div class="usy-name">
@@ -19,18 +19,25 @@
         </div>
 
         <div class="job_descp">
+          <div class="img-container">
+            <img :src="announcement.images[0]" alt="">
+          </div>
+
           <h3>{{ announcement.title }}</h3>
+
           <ul class="job-dt">
             <li><a href="#" title="">Preço</a></li>
             <li><span class="previous-price">{{ announcement.previousPrice | currency }}</span></li>
             <li><span>{{ announcement.currentPrice | currency }}</span></li>
           </ul>
-          <p>
-            {{ announcement.description }}
-          </p>
         </div>
+
         <div class="job-status-bar">
           <ul class="like-com">
+            <li>
+              <a href="#"><i class="la la-shopping-cart"></i> Comprar</a>
+            </li>
+
             <li>
               <a href="#"><i class="la la-heart"></i> Impulsionar</a>
               <img src="/static/images/liked-img.png" alt=""/>
@@ -81,9 +88,17 @@ export default {
     position: relative
     padding: 20px 20px 15px 20px
 
+  .img-container
+    margin-bottom: 15px
+    text-align: center
+
+    img
+      max-height: 270px
+
   .usy-dt
 
   .usy-dt > img
+    float: left
     width: 50px
     -webkit-border-radius: 100px
     -moz-border-radius: 100px
@@ -244,6 +259,7 @@ export default {
   .like-com li
     display: inline-block
     margin-right: 15px
+    vertical-align: top
 
   .like-com li a
     float: left
