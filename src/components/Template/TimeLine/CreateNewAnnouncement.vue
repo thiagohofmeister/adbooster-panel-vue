@@ -4,27 +4,41 @@
       <div class="row">
         <div class="col-2">
           <div class="user-picy">
-            <img src="http://via.placeholder.com/100x100" alt=""/>
+            <img :src="user.image" alt=""/>
           </div>
         </div>
 
-        <div class="col-4 el-col-md-offset-12">
-          <div class="post-st">
-            <ul>
-              <li><a class="post_project" href="#" title="">Post a Project</a></li>
-              <li><a class="post-jb active" href="#" title="">Post a Job</a></li>
-            </ul>
+        <div class="col-2 el-col-md-offset-16">
+          <div class="text-right align-middle">
+            <button class="btn btnAnnouncement" @click="showModal()">Anunciar</button>
           </div>
         </div>
       </div>
     </div>
+
+    <ModalNewAnnouncement/>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'CreateNewAnnouncement'
-}
+  import { mapFields } from 'vuex-map-fields'
+  import ModalNewAnnouncement from '@/components/Announcement/ModalNew'
+
+  export default {
+    methods: {
+      showModal () {
+        this.$modal.show('createAnnouncement')
+      }
+    },
+    computed: {
+      ...mapFields({
+        user: 'user.user'
+      })
+    },
+    components: {
+      ModalNewAnnouncement
+    }
+  }
 </script>
 
 <style lang="sass" scoped>
@@ -42,30 +56,13 @@ export default {
     box-shadow: 0 0 1px rgba(0,0,0,0.24)
     margin-bottom: 20px
 
-  .post-st
-    margin-top: 5px
-    text-align: right
+  .user-picy
+    img
+      border-radius: 100%
 
-  .post-st ul li
-    display: inline-block
-    margin-right: 6px
-
-  .post-st ul li:last-child
-    margin-right: 0
-
-  .post-st ul li a
-    color: #b2b2b2
-    font-size: 16px
-    display: inline-block
-    background-color: #e5e5e5
-    height: 40px
-    padding: 0 15px
-    line-height: 40px
-    font-weight: 500
-
-  .post-st ul li a:hover,
-  .post-st ul li a.active
-    background-color: #e44d3a
-    color: #fff
-
+  .btnAnnouncement
+    background: #e44d3a
+    color: #FFF
+    cursor: pointer
+    margin: 7px 0
 </style>

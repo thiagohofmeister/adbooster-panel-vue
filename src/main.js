@@ -8,6 +8,9 @@ import locale from 'element-ui/lib/locale/lang/pt-br'
 import VueMoment from 'vue-moment'
 import moment from 'moment'
 import VueCurrencyFilter from 'vue-currency-filter'
+import VModal from 'vue-js-modal'
+
+Vue.use(VModal)
 
 Vue.use(ElementUI, { locale })
 

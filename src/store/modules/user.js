@@ -22,15 +22,12 @@ export default {
       commit('fetching', true)
       api.getTimeLineUser(options)
         .then(result => {
-          console.log(result)
           const { total, items } = result
           commit('fetchTimeLine', { total, items })
         })
         .catch(() => {
           commit('fetchTimeLine', { total: 0, items: [] })
         })
-
-      console.log(state.user)
     },
     addUser ({ state, commit }, user) {
       commit('fetching', true)
