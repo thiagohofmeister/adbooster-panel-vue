@@ -10,7 +10,7 @@
 
         <div class="col-2 el-col-md-offset-16">
           <div class="text-right align-middle">
-            <button class="btn btnAnnouncement" @click="showModal()">Anunciar</button>
+            <button class="btn btn-primary btnAnnouncement" @click="showModal()">Anunciar</button>
           </div>
         </div>
       </div>
@@ -61,8 +61,5 @@
       border-radius: 100%
 
   .btnAnnouncement
-    background: #e44d3a
-    color: #FFF
-    cursor: pointer
     margin: 7px 0
 </style>

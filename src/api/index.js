@@ -30,5 +30,13 @@ export default {
     return (await request.get(`/announcement`, {
       params: options
     })).data
+  },
+  /**
+   * Envia uma imagem.
+   *
+   * @returns {Promise.<Object>}
+   */
+  async uploadImage (formData) {
+    return (await request.post(`file/upload`, formData)).data
   }
 }

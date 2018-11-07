@@ -28,6 +28,7 @@ Vue.use(VueCurrencyFilter, {
 })
 
 require('moment/locale/pt-br')
+require('@/style/custom.sass')
 
 /* eslint-disable no-new */
 new Vue({

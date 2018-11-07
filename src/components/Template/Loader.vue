@@ -79,7 +79,7 @@
       bottom: 0
 
   .withoutLabel
-    height: 22px
+    height: 37px
 
   .v-spinner
     width: 90px
@@ -93,7 +93,7 @@
     font-size: 13px
     font-weight: bold
     opacity: 0.5
-    line-height: 28px
+    line-height: 50px
 
   div.loader
     display: block
@@ -103,8 +103,8 @@
       top: 0
       left: 0
       height: 100%
-      position: fixed
-      background: rgba(250, 250, 250, 1)
+      position: absolute
+      background: #FFF
       z-index: 2147483646
 </style>
 
