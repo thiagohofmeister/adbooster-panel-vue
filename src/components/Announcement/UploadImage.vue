@@ -1,8 +1,12 @@
 <template>
   <div>
-    <div class="image-container" v-for="image in uploadedFiles" :key="image">
-      <img :src="image" alt="">
-    </div>
+    <Container :drop="onDrop" @drop="onDrop" orientation="horizontal">
+      <Draggable v-for="image in uploadedFiles" :key="image">
+        <div class="image-container">
+          <img :src="image" alt="">
+        </div>
+      </Draggable>
+    </Container>
 
     <div class="image-container image-container-fake" v-if="saving && uploadedFiles.length < (limitFiles - 2)">
       <Loader :loading="true"></Loader>
@@ -20,16 +24,22 @@
 </template>
 
 <script>
+  import { Container, Draggable } from 'vue-smooth-dnd'
   import api from '@/api'
   import notifier from '@/notifier'
   import Loader from '@/components/Template/Loader'
+  import { applyDrag } from './utils/helpers'
 
   export default {
     data: () => ({
       saving: false,
-      uploadedFiles: [],
+      uploadedFiles: [
+        'http://localhost:3001/image/announcements/a4823ec0b43d79b2.png',
+        'http://localhost:3001/image/announcements/bcde80996d37b60d.png',
+        'http://localhost:3001/image/announcements/a4823ec0b43d79b2.png'
+      ],
       uploadFieldName: 'images[]',
-      limitFiles: 10,
+      limitFiles: 5,
       fileType: [
         'image/jpeg',
         'image/jpg',
@@ -42,6 +52,9 @@
       this.reset()
     },
     methods: {
+      onDrop (dropResult) {
+        this.uploadedFiles = applyDrag(this.uploadedFiles, dropResult)
+      },
       reset () {
         const input = document.getElementById('file')
         if (input) {
@@ -99,16 +112,29 @@
       }
     },
     components: {
-      Loader
+      Loader,
+      Container,
+      Draggable
     }
   }
 </script>
 
 <style lang="sass" scoped>
+  .teste
+    border: 1px solid #f00
+    background: #F00
+
+  .smooth-dnd-container.horizontal
+    display: inline-block
+    margin-bottom: 10px
+
+  .smooth-dnd-draggable-wrapper
+    &:not(:first-child)
+      margin-left: 5px
+
   .image-container
-    width: 100px
-    height: 100px
-    margin-right: 5px
+    width: 95px
+    height: 95px
     margin-bottom: 5px
     display: inline-block
     vertical-align: top
@@ -116,7 +142,7 @@
 
     img
       width: 100%
-      height: 100px
+      height: 100%
 
     &-fake
       border: 2px solid #f00
@@ -126,13 +152,16 @@
     background: #f8f8f8
     color: dimgray
     padding: 23px 10px
-    width: 100px
-    height: 100px
+    width: 95px
+    height: 95px
     position: relative
     cursor: pointer
     margin-bottom: 20px
     display: inline-block
     vertical-align: top
+
+    &:not(.isEmpty)
+      margin-left: 5px
 
     .input-file
       opacity: 0
