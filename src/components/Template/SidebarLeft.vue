@@ -3,8 +3,6 @@
     <div class="row">
       <UserProfileResume/>
 
-      <FriendshipSuggestionsList/>
-
       <SiteFooter/>
     </div>
   </div>

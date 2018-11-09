@@ -1,10 +1,23 @@
 <template>
   <div class="user-account">
-    <div class="user-info">
-      <img :src="user.image" alt=""/>
-      <a href="#" title="">{{ user.name }}</a>
-      <i class="la la-sort-down"/>
+
+
+    <div class="dropdown show">
+      <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <div class="user-info">
+          <img :src="user.image" alt=""/>
+          <a href="#" title="">{{ user.name }}</a>
+          <i class="la la-sort-down"/>
+        </div>
+      </a>
+
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item" href="#">Action</a>
+        <a class="dropdown-item" href="#">Another action</a>
+        <a class="dropdown-item" href="#">Something else here</a>
+      </div>
     </div>
+
     <div class="user-account-settingss">
       <h3>Online Status</h3>
       <ul class="on-off-status">
@@ -62,4 +75,7 @@
   .user-info
     img
       max-width: 30px
+
+  .dropdown-toggle::after
+    content: none
 </style>

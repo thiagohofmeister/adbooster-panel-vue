@@ -1,161 +1,143 @@
 <template>
-  <div>
-    <nav>
-      <ul>
-        <li>
-          <a href="index.html" title="">
-          <span><img src="/static/images/icon1.png" alt=""/></span>
-          Home
-          </a>
-        </li>
-        <li>
-          <a href="companies.html" title="">
-          <span><img src="/static/images/icon2.png" alt=""/></span>
-          Companies
-          </a>
-          <ul>
-            <li><a href="companies.html" title="">Companies</a></li>
-            <li><a href="company-profile.html" title="">Company Profile</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="projects.html" title="">
-          <span><img src="/static/images/icon3.png" alt=""/></span>
-          Projects
-          </a>
-        </li>
-        <li>
-          <a href="profiles.html" title="">
-          <span><img src="/static/images/icon4.png" alt=""/></span>
-          Profiles
-          </a>
-          <ul>
-            <li><a href="user-profile.html" title="">User Profile</a></li>
-            <li><a href="my-profile-feed.html" title="">my-profile-feed</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="jobs.html" title="">
-          <span><img src="/static/images/icon5.png" alt=""/></span>
-          Jobs
-          </a>
-        </li>
-        <li>
-          <a href="#" title="" class="not-box-open">
-          <span><img src="/static/images/icon6.png" alt=""/></span>
-          Messages
-          </a>
-          <div class="notification-box msg">
-            <div class="nt-title">
-              <h4>Setting</h4>
-              <a href="#" title="">Clear all</a>
-            </div>
-            <div class="nott-list">
-              <div class="notfication-details">
-                <div class="noty-user-img">
-                  <img src="/static/images/resources/ny-img1.png" alt=""/>
-                </div>
-                <div class="notification-info">
-                  <h3><a href="messages.html" title="">Jassica William</a></h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do.</p>
-                  <span>2 min ago</span>
-                </div>
-              </div>
-              <div class="notfication-details">
-                <div class="noty-user-img">
-                  <img src="/static/images/resources/ny-img2.png" alt=""/>
-                </div>
-                <div class="notification-info">
-                  <h3><a href="messages.html" title="">Jassica William</a></h3>
-                  <p>Lorem ipsum dolor sit amet.</p>
-                  <span>2 min ago</span>
-                </div>
-              </div>
-              <div class="notfication-details">
-                <div class="noty-user-img">
-                  <img src="/static/images/resources/ny-img3.png" alt=""/>
-                </div>
-                <div class="notification-info">
-                  <h3><a href="messages.html" title="">Jassica William</a></h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempo incididunt
-                    ut labore et dolore magna aliqua.</p>
-                  <span>2 min ago</span>
-                </div>
-              </div>
-              <div class="view-all-nots">
-                <a href="messages.html" title="">View All Messsages</a>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <a href="#" title="" class="not-box-open">
-          <span><img src="/static/images/icon7.png" alt=""/></span>
-          Notification
-          </a>
-          <div class="notification-box">
-            <div class="nt-title">
-              <h4>Setting</h4>
-              <a href="#" title="">Clear all</a>
-            </div>
-            <div class="nott-list">
-              <div class="notfication-details">
-                <div class="noty-user-img">
-                  <img src="/static/images/resources/ny-img1.png" alt=""/>
-                </div>
-                <div class="notification-info">
-                  <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
-                  <span>2 min ago</span>
-                </div>
-              </div>
-              <div class="notfication-details">
-                <div class="noty-user-img">
-                  <img src="/static/images/resources/ny-img2.png" alt=""/>
-                </div>
-                <div class="notification-info">
-                  <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
-                  <span>2 min ago</span>
-                </div>
-              </div>
-              <div class="notfication-details">
-                <div class="noty-user-img">
-                  <img src="/static/images/resources/ny-img3.png" alt=""/>
-                </div>
-                <div class="notification-info">
-                  <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
-                  <span>2 min ago</span>
-                </div>
-              </div>
-              <div class="notfication-details">
-                <div class="noty-user-img">
-                  <img src="/static/images/resources/ny-img2.png" alt=""/>
-                </div>
-                <div class="notification-info">
-                  <h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
-                  <span>2 min ago</span>
-                </div>
-              </div>
-              <div class="view-all-nots">
-                <a href="#" title="">View All Notification</a>
-              </div>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </nav>
+  <div class="actions">
+    <div class="drop friend-invites">
+      <span class="btn-action" v-bind:class="{ active: flags.showFriendInvites }" @click="toggleFriendInvites">
+        <i class="fa fa-user-friends"></i>
+      </span>
 
-    <div class="menu-btn">
-      <a href="#" title=""><i class="fa fa-bars"/></a>
+      <div class="drop-inner" v-bind:class="{ show: flags.showFriendInvites }" aria-labelledby="dropdownMenuButton">
+        Solicitações
+      </div>
+    </div>
+
+    <div class="drop chats">
+      <span class="btn-action" v-bind:class="{ active: flags.showChats }" @click="toggleChats">
+        <i class="fa fa-comment"></i>
+      </span>
+
+      <div class="drop-inner" v-bind:class="{ show: flags.showChats }" aria-labelledby="dropdownMenuButton">
+        Conversas
+      </div>
+    </div>
+
+    <div class="drop notifications">
+      <span class="btn-action" v-bind:class="{ active: flags.showNotifications }" @click="toggleNotifications">
+        <i class="fa fa-bell"></i>
+      </span>
+
+      <div class="drop-inner" v-bind:class="{ show: flags.showNotifications }" aria-labelledby="dropdownMenuButton">
+        Notificações
+      </div>
+    </div>
+
+    <div class="drop options">
+      <span class="btn-action" v-bind:class="{ active: flags.showOptions }" @click="toggleOptions">
+        <i class="fa fa-caret-down"></i>
+      </span>
+
+      <div class="drop-inner" v-bind:class="{ show: flags.showOptions }" aria-labelledby="dropdownMenuButton">
+        Opções
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'MenuTopBar'
+  data: () => ({
+    flags: {
+      showFriendInvites: false,
+      showChats: false,
+      showNotifications: false,
+      showOptions: false
+    }
+  }),
+  methods: {
+    toggleFriendInvites () {
+      this.hideAll('showFriendInvites')
+      this.flags.showFriendInvites = !this.flags.showFriendInvites
+    },
+    toggleChats () {
+      this.hideAll('showChats')
+      this.flags.showChats = !this.flags.showChats
+    },
+    toggleNotifications () {
+      this.hideAll('showNotifications')
+      this.flags.showNotifications = !this.flags.showNotifications
+    },
+    toggleOptions () {
+      this.hideAll('showOptions')
+      this.flags.showOptions = !this.flags.showOptions
+    },
+    hideAll (flag) {
+      for (let i in Object.keys(this.flags)) {
+        const flagName = Object.keys(this.flags)[i]
+
+        if (flagName !== flag) {
+          this.flags[flagName] = false
+        }
+      }
+    }
+  }
 }
 </script>
 
-<style scoped>
+<style lang="sass" scoped>
+  .actions
+    margin: 14px 0
+
+  .drop
+    position: relative
+    width: 40px
+    display: inline-block
+    vertical-align: middle
+
+    &:not(:first-child)
+      margin-left: 15px
+
+    &.chats
+      width: 26px
+      margin-left: 5px
+
+      .drop-inner::after
+        right: 5px
+
+    &.notifications
+      width: 24px
+      margin-left: 13px
+
+      .drop-inner::after
+        right: 3px
+
+  .drop-inner
+    width: 120px
+    background: #FFF
+    padding: 15px
+    position: absolute
+    top: 44px
+    right: 0
+    display: none
+
+    &::after
+      content: ''
+      border-left: 10px solid transparent
+      border-right: 10px solid transparent
+      border-bottom: 15px solid #fff
+      position: absolute
+      top: -15px
+      right: 13px
+
+    &.show
+      display: block
+
+  .btn-action
+    cursor: pointer
+    color: #531f15
+
+    &.active
+      color: #fff
+
+    i
+      font-size: 25px
 
 </style>
