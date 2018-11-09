@@ -41,6 +41,7 @@ export default {
     },
     logout ({ state, commit }) {
       Cookie.delete('token')
+      api.getUser()
     }
   },
   mutations: {

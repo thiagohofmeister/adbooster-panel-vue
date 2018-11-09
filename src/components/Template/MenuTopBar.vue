@@ -36,50 +36,61 @@
       </span>
 
       <div class="drop-inner" v-bind:class="{ show: flags.showOptions }" aria-labelledby="dropdownMenuButton">
-        Opções
+
+        <ul class="options-container">
+
+          <li class="options-item" @click="logout">
+            <span>Sair</span>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {
-  data: () => ({
-    flags: {
-      showFriendInvites: false,
-      showChats: false,
-      showNotifications: false,
-      showOptions: false
-    }
-  }),
-  methods: {
-    toggleFriendInvites () {
-      this.hideAll('showFriendInvites')
-      this.flags.showFriendInvites = !this.flags.showFriendInvites
-    },
-    toggleChats () {
-      this.hideAll('showChats')
-      this.flags.showChats = !this.flags.showChats
-    },
-    toggleNotifications () {
-      this.hideAll('showNotifications')
-      this.flags.showNotifications = !this.flags.showNotifications
-    },
-    toggleOptions () {
-      this.hideAll('showOptions')
-      this.flags.showOptions = !this.flags.showOptions
-    },
-    hideAll (flag) {
-      for (let i in Object.keys(this.flags)) {
-        const flagName = Object.keys(this.flags)[i]
+  import { mapActions } from 'vuex'
 
-        if (flagName !== flag) {
-          this.flags[flagName] = false
+  export default {
+    data: () => ({
+      flags: {
+        showFriendInvites: false,
+        showChats: false,
+        showNotifications: false,
+        showOptions: false
+      }
+    }),
+    methods: {
+      ...mapActions('user', [
+        'logout'
+      ]),
+      toggleFriendInvites () {
+        this.hideAll('showFriendInvites')
+        this.flags.showFriendInvites = !this.flags.showFriendInvites
+      },
+      toggleChats () {
+        this.hideAll('showChats')
+        this.flags.showChats = !this.flags.showChats
+      },
+      toggleNotifications () {
+        this.hideAll('showNotifications')
+        this.flags.showNotifications = !this.flags.showNotifications
+      },
+      toggleOptions () {
+        this.hideAll('showOptions')
+        this.flags.showOptions = !this.flags.showOptions
+      },
+      hideAll (flag) {
+        for (let i in Object.keys(this.flags)) {
+          const flagName = Object.keys(this.flags)[i]
+
+          if (flagName !== flag) {
+            this.flags[flagName] = false
+          }
         }
       }
     }
   }
-}
 </script>
 
 <style lang="sass" scoped>
@@ -139,5 +150,13 @@ export default {
 
     i
       font-size: 25px
+
+  .options-container
+
+    .options-item
+      cursor: pointer
+
+      &:hover
+        color: #e44d3a
 
 </style>
