@@ -12,7 +12,7 @@
       <Loader :loading="true"></Loader>
     </div>
 
-    <div class="dropbox" v-if="uploadedFiles.length < limitFiles">
+    <div class="dropbox" v-if="uploadedFiles.length < limitFiles" v-bind:class="{ isEmpty: !uploadedFiles.length }">
 
       <input type="file" id="file" multiple :name="uploadFieldName" :disabled="saving" @change="filesChange($event.target.name, $event.target.files)" class="input-file">
       <div class="center">
@@ -33,11 +33,7 @@
   export default {
     data: () => ({
       saving: false,
-      uploadedFiles: [
-        'http://localhost:3001/image/announcements/a4823ec0b43d79b2.png',
-        'http://localhost:3001/image/announcements/bcde80996d37b60d.png',
-        'http://localhost:3001/image/announcements/a4823ec0b43d79b2.png'
-      ],
+      uploadedFiles: [],
       uploadFieldName: 'images[]',
       limitFiles: 5,
       fileType: [
@@ -82,7 +78,6 @@
           })
           .then(result => {
             result.urls.map(url => {
-              console.log(url)
               this.uploadedFiles.push(url)
             })
           })
@@ -109,6 +104,11 @@
           })
 
         this.save(formData)
+      }
+    },
+    watch: {
+      uploadedFiles (value) {
+        this.$emit('change', value)
       }
     },
     components: {

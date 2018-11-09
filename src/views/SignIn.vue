@@ -1,5 +1,6 @@
 <template>
   <div class="sign-in sign-in-page">
+    <Loader :loading="logging"/>
     <div class="signin-popup">
       <div class="signin-pop">
         <div class="row">
@@ -178,33 +179,40 @@
 </template>
 
 <script>
-import api from '@/api'
-import notifier from '@/notifier'
-import { mapActions } from 'vuex'
+  import api from '@/api'
+  import notifier from '@/notifier'
+  import { mapActions } from 'vuex'
+  import Loader from '@/components/Template/Loader'
 
-export default {
-  data: () => ({
-    userLogging: {
-      email: null,
-      password: null
-    }
-  }),
-  methods: {
-    ...mapActions('user', [
-      'addUser'
-    ]),
-    signIn (event) {
-      api.authenticate(this.userLogging)
-        .then(result => {
-          this.addUser(result)
-          this.$router.push('/')
-        })
-        .catch(() => notifier.error('Erro ao acessar a conta.', 'Erro'))
+  export default {
+    data: () => ({
+      userLogging: {
+        email: null,
+        password: null
+      },
+      logging: false
+    }),
+    methods: {
+      ...mapActions('user', [
+        'addUser'
+      ]),
+      signIn (event) {
+        this.logging = true
+        api.authenticate(this.userLogging)
+          .then(result => {
+            this.addUser(result)
+            this.$router.push('/')
+          })
+          .catch(() => notifier.error('Erro ao acessar a conta.', 'Erro'))
+          .then(() => { this.logging = false })
 
-      event.preventDefault()
+        event.preventDefault()
+      }
+    },
+    components: {
+      Loader
     }
   }
-}
 </script>
 
 <style scoped>

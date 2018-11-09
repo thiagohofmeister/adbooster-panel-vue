@@ -21,12 +21,17 @@
 </template>
 
 <script>
+  import { mapActions } from 'vuex'
   import { mapFields } from 'vuex-map-fields'
   import ModalNewAnnouncement from '@/components/Announcement/ModalNew'
 
   export default {
     methods: {
+      ...mapActions('errors', [
+        'clearErrors'
+      ]),
       showModal () {
+        this.clearErrors()
         this.$modal.show('createAnnouncement')
       }
     },

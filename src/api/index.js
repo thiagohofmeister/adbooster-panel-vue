@@ -12,13 +12,12 @@ export default {
     return (await axios.post(process.env.API_URL + `/authenticate`, userData)).data
   },
   /**
-   * Realiza a validação do usuário logado.
+   * Retorna o usuário logado.
    *
-   * @param {String} token
    * @returns {Promise<any>}
    */
-  async getUser (token) {
-    return (await request.post(`/user/retrieve`)).data
+  async getUser () {
+    return (await request.get(`/user/retrieve`)).data
   },
   /**
    * Retorna a timeline do usuário.
@@ -38,5 +37,14 @@ export default {
    */
   async uploadImage (formData) {
     return (await request.post(`file/upload`, formData)).data
+  },
+  /**
+   * Publica um anúncio.
+   *
+   * @param {Object} announcement
+   * @returns {Promise<any>}
+   */
+  async publishAnnouncement (announcement) {
+    return (await request.post(`/announcement/publish`, announcement)).data
   }
 }

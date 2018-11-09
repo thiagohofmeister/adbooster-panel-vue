@@ -53,7 +53,7 @@ export default {
       if (!this.user) {
         this.loading = true
 
-        api.getUser(token)
+        api.getUser()
           .then(result => this.addUser(result))
           .catch(() => this.$router.push('/signin'))
           .then(() => { this.loading = false })

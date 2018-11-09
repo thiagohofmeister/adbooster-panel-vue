@@ -2,7 +2,20 @@
   <div class="form-group" v-bind:class="[colClass, classError]">
     <label class="form-label" v-bind:class="{'bold': required}">{{ label }} <span class="t-error" v-if="required">*</span></label>
     <slot/>
-    <span class="t-error dsblock" v-if="error !== null">{{ error }}</span>
+    <span class="t-error dsblock" v-if="!isNumber && error.message !== null">
+        {{
+          $te(`validationError.${error.message}.label`, { msg: $t(error.value) }) ?
+            $t(`validationError.${error.message}.label`, { msg: $t(error.value) }) :
+            $t(`${error.message}.label`, { msg: $t(error.value) })
+        }}
+      </span>
+    <span class="t-error dsblock" v-if="isNumber && error.message !== null">
+        {{
+          $te(`validationError.${error.message}.label`, error.value, { msg: error.value }) ?
+            $tc(`validationError.${error.message}.label`, error.value, { msg: error.value }) :
+            $tc(`${error.message}.label`, error.value, { msg: error.value })
+        }}
+      </span>
   </div>
 </template>
 
@@ -15,10 +28,11 @@
       },
       label: {
         type: String,
-        required: true
+        required: false
       },
       error: {
-        type: String,
+        type: Object,
+        default: () => { return {message: null, value: null} },
         required: false
       },
       required: {
@@ -36,6 +50,9 @@
     computed: {
       colClass () {
         return `col-${this.columns}`
+      },
+      isNumber () {
+        return !isNaN(this.error.value)
       }
     }
   }
