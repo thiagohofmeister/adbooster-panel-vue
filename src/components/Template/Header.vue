@@ -8,16 +8,16 @@
 
         <div class="col-4">
           <div class="search-bar">
-            <form>
-              <input type="text" name="search" placeholder="Encontrar amigos"/>
-              <button type="submit"><i class="la la-search"></i></button>
-            </form>
+            <FormGroup :columns="0">
+              <input type="text" v-model="search" name="search" placeholder="Encontrar amigos"/>
+              <button @click="findUsers"><i class="la la-search"></i></button>
+            </FormGroup>
           </div>
         </div>
 
-       <!-- <div class="col-3">
+       <div class="col-3" v-if="false">
           <UserTopBar/>
-        </div>-->
+        </div>
 
         <div class="col-4">
           <MenuTopBar/>
@@ -28,15 +28,30 @@
 </template>
 
 <script>
-import MenuTopBar from '@/components/Template/MenuTopBar'
-import UserTopBar from '@/components/Template/UserTopBar'
+  import MenuTopBar from '@/components/Template/MenuTopBar'
+  import UserTopBar from '@/components/Template/UserTopBar'
+  import FormGroup from '@/components/Template/FormGroup'
 
-export default {
-  components: {
-    MenuTopBar,
-    UserTopBar
+  export default {
+    data: () => ({
+      search: null
+    }),
+    methods: {
+      findUsers () {
+        if (!this.search) {
+          return
+        }
+
+        console.log('asd')
+        this.$router.push({ name: 'search', params: { search: this.search } })
+      }
+    },
+    components: {
+      MenuTopBar,
+      UserTopBar,
+      FormGroup
+    }
   }
-}
 </script>
 
 <style lang="sass" scoped>
@@ -55,11 +70,11 @@ export default {
   .search-bar
     margin: 10px 0
 
-  .search-bar form
+  .search-bar
     width: 100%
     position: relative
 
-  .search-bar form input
+  .search-bar input
     width: 100%
     background-color: #fff
     height: 38px
@@ -68,7 +83,7 @@ export default {
     border: 0
     padding: 0 10px
 
-  .search-bar form button
+  .search-bar button
     position: absolute
     top: 0
     right: 0
@@ -77,10 +92,12 @@ export default {
     height: 100%
     border: 0
 
-  .search-bar form button i
+  .search-bar button i
     color: #e44d3a
     font-size: 20px
     font-weight: bold
 
+  .form-group
+    margin-bottom: 0
 
 </style>

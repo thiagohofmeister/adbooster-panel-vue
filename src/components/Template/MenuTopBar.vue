@@ -120,6 +120,12 @@
       .drop-inner::after
         right: 3px
 
+    &.options
+      width: 20px
+
+      .drop-inner::after
+        right: 2px
+
   .drop-inner
     width: 120px
     background: #FFF
@@ -128,6 +134,11 @@
     top: 44px
     right: 0
     display: none
+    -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.24)
+    -moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.24)
+    -ms-box-shadow: 0 0 1px rgba(0, 0, 0, 0.24)
+    -o-box-shadow: 0 0 1px rgba(0, 0, 0, 0.24)
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.24)
 
     &::after
       content: ''

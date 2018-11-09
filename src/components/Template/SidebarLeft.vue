@@ -3,7 +3,7 @@
     <div class="row">
       <UserProfileResume/>
 
-      <SiteFooter/>
+      <SiteFooter v-if="false"/>
     </div>
   </div>
 </template>
