@@ -16,10 +16,10 @@
           <div class="col-lg-6">
             <div class="login-sec">
               <ul class="sign-control">
-                <li data-tab="tab-1" class="current"><a href="#" title="">Sign in</a></li>
-                <li data-tab="tab-2"><a href="#" title="">Sign up</a></li>
+                <li data-tab="tab-1" v-bind:class="{ current: flagLogin }" @click="toggleLogin"><a href="#" title="">Acessar</a></li>
+                <li data-tab="tab-2" v-bind:class="{ current: !flagLogin }" @click="toggleLogin"><a href="#" title="">Cadastrar</a></li>
               </ul>
-              <div class="sign_in_sec current" id="tab-1">
+              <div class="sign_in_sec" v-bind:class="{ current: flagLogin }" id="tab-1">
 
                 <h3>Acessar conta</h3>
                 <form @submit.prevent="signIn">
@@ -48,112 +48,73 @@
                   </ul>
                 </div>
               </div>
-              <div class="sign_in_sec" id="tab-2">
-                <div class="signup-tab">
-                  <i class="fa fa-long-arrow-left"></i>
-                  <h2>johndoe@example.com</h2>
-                  <ul>
-                    <li data-tab="tab-3" class="current"><a href="#" title="">User</a></li>
-                    <li data-tab="tab-4"><a href="#" title="">Company</a></li>
-                  </ul>
-                </div>
-                <div class="dff-tab current" id="tab-3">
-                  <form>
-                    <div class="row">
-                      <div class="col-lg-12 no-pdd">
+              <div class="sign_in_sec" v-bind:class="{ current: !flagLogin }" id="tab-2">
+
+                <h3>Criar conta</h3>
+                <form  @submit.prevent="signUp">
+                  <div class="row">
+                    <div class="col-lg-12 no-pdd">
+                      <FormGroup :columns="0" :error="getError('name')">
                         <div class="sn-field">
-                          <input type="text" name="name" placeholder="Full Name">
+                          <input type="text" v-model="userRegister.name" name="name" placeholder="Nome completo">
                           <i class="la la-user"></i>
                         </div>
-                      </div>
-                      <div class="col-lg-12 no-pdd">
+                      </FormGroup>
+                    </div>
+                    <div class="col-lg-12 no-pdd" :error="getError('email')">
+                      <FormGroup :columns="0">
                         <div class="sn-field">
-                          <input type="text" name="country" placeholder="Country">
-                          <i class="la la-globe"></i>
+                          <input type="text" v-model="userRegister.email" name="email" placeholder="E-mail">
+                          <i class="la la-envelope"></i>
                         </div>
-                      </div>
-                      <div class="col-lg-12 no-pdd">
+                      </FormGroup>
+                    </div>
+                    <div class="col-lg-12 no-pdd">
+                      <FormGroup :columns="0" :error="getError('gender')">
                         <div class="sn-field">
-                          <select>
-                            <option>Category</option>
+                          <select v-model="userRegister.gender">
+                            <option>Gênero</option>
+                            <option value="male">Masculino</option>
+                            <option value="female">Feminino</option>
+                            <option value="other">Outro</option>
                           </select>
                           <i class="la la-dropbox"></i>
                           <span><i class="fa fa-ellipsis-h"></i></span>
                         </div>
-                      </div>
-                      <div class="col-lg-12 no-pdd">
+                      </FormGroup>
+                    </div>
+                    <div class="col-lg-12 no-pdd" :error="getError('password')">
+                      <FormGroup :columns="0">
                         <div class="sn-field">
-                          <input type="password" name="password" placeholder="Password">
+                          <input type="password" v-model="userRegister.password" name="password" placeholder="Senha">
                           <i class="la la-lock"></i>
                         </div>
-                      </div>
-                      <div class="col-lg-12 no-pdd">
+                      </FormGroup>
+                    </div>
+                    <div class="col-lg-12 no-pdd">
+                      <FormGroup :columns="0">
                         <div class="sn-field">
-                          <input type="password" name="repeat-password" placeholder="Repeat Password">
+                          <input type="password" v-model="passwordRepeat" name="repeat-password" placeholder="Repetir senha">
                           <i class="la la-lock"></i>
                         </div>
-                      </div>
-                      <div class="col-lg-12 no-pdd">
-                        <div class="checky-sec st2">
-                          <div class="fgt-sec">
-                            <input type="checkbox" name="cc" id="c2">
-                            <label for="c2">
-                              <span></span>
-                            </label>
-                            <small>Yes, I understand and agree to the workwise Terms & Conditions.</small>
-                          </div>
+                      </FormGroup>
+                    </div>
+                    <div class="col-lg-12 no-pdd">
+                      <div class="checky-sec st2">
+                        <div class="fgt-sec">
+                          <input type="checkbox" v-model="acceptTerms" name="cc" id="c2">
+                          <label for="c2">
+                            <span></span>
+                          </label>
+                          <small>Sim, eu concordo com os termos e condições de uso do AdBooster.</small>
                         </div>
-                      </div>
-                      <div class="col-lg-12 no-pdd">
-                        <button type="submit" value="submit">Get Started</button>
                       </div>
                     </div>
-                  </form>
-                </div>
-                <div class="dff-tab" id="tab-4">
-                  <form>
-                    <div class="row">
-                      <div class="col-lg-12 no-pdd">
-                        <div class="sn-field">
-                          <input type="text" name="company-name" placeholder="Company Name">
-                          <i class="la la-building"></i>
-                        </div>
-                      </div>
-                      <div class="col-lg-12 no-pdd">
-                        <div class="sn-field">
-                          <input type="text" name="country" placeholder="Country">
-                          <i class="la la-globe"></i>
-                        </div>
-                      </div>
-                      <div class="col-lg-12 no-pdd">
-                        <div class="sn-field">
-                          <input type="password" name="password" placeholder="Password">
-                          <i class="la la-lock"></i>
-                        </div>
-                      </div>
-                      <div class="col-lg-12 no-pdd">
-                        <div class="sn-field">
-                          <input type="password" name="repeat-password" placeholder="Repeat Password">
-                          <i class="la la-lock"></i>
-                        </div>
-                      </div>
-                      <div class="col-lg-12 no-pdd">
-                        <div class="checky-sec st2">
-                          <div class="fgt-sec">
-                            <input type="checkbox" name="cc" id="c3">
-                            <label for="c3">
-                              <span></span>
-                            </label>
-                            <small>Yes, I understand and agree to the workwise Terms & Conditions.</small>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-lg-12 no-pdd">
-                        <button type="submit" value="submit">Get Started</button>
-                      </div>
+                    <div class="col-lg-12 no-pdd">
+                      <button type="submit" value="submit">Começar</button>
                     </div>
-                  </form>
-                </div>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
@@ -161,7 +122,7 @@
       </div>
     </div>
     <div class="footy-sec">
-      <div class="container">
+      <div class="container" v-if="false">
         <ul>
           <li><a href="#" title="">Help Center</a></li>
           <li><a href="#" title="">Privacy Policy</a></li>
@@ -179,44 +140,98 @@
 </template>
 
 <script>
+  import { omit } from '@/utils'
   import api from '@/api'
   import notifier from '@/notifier'
-  import { mapActions } from 'vuex'
+  import { mapActions, mapGetters } from 'vuex'
   import Loader from '@/components/Template/Loader'
+  import FormGroup from '@/components/Template/FormGroup'
 
   export default {
     data: () => ({
+      flagLogin: true,
       userLogging: {
         email: null,
         password: null
       },
+      userRegister: {
+        name: '',
+        email: '',
+        password: '',
+        gender: ''
+      },
+      passwordRepeat: '',
+      acceptTerms: false,
       logging: false
     }),
     methods: {
       ...mapActions('user', [
         'addUser'
       ]),
-      signIn (event) {
-        this.logging = true
-        api.authenticate(this.userLogging)
+      ...mapActions('errors', [
+        'addError',
+        'clearErrors'
+      ]),
+      toggleLogin () {
+        this.clearErrors()
+        this.flagLogin = !this.flagLogin
+      },
+      authenticate (user) {
+        api.authenticate(user)
           .then(result => {
             this.addUser(result)
             this.$router.push('/')
           })
-          .catch(() => notifier.error('Erro ao acessar a conta.', 'Erro'))
+          .catch(() => notifier.error('Erro ao acessar a conta.', 'Autenticação'))
+          .then(() => { this.logging = false })
+      },
+      signIn (event) {
+        this.logging = true
+
+        this.authenticate(this.userLogging)
+
+        event.preventDefault()
+      },
+      signUp (event) {
+        this.clearErrors()
+        if (!this.acceptTerms) {
+          notifier.error('Você precisa aceitar os termos e condições de uso para se cadastrar.', 'Cadastro de usuário')
+          return
+        }
+
+        if (this.userRegister.password !== this.passwordRepeat) {
+          notifier.error('As duas senhas não conferem. Tente novamente.', 'Cadastro de usuário')
+          return
+        }
+
+        this.logging = true
+
+        api.register(omit(this.userRegister))
+          .then(result => {
+            this.authenticate(this.userRegister)
+          })
+          .catch(errors => {
+            notifier.error('Erro ao cadastrar a conta.', 'Cadastro de usuário')
+            this.addError(errors.response.data.data)
+          })
           .then(() => { this.logging = false })
 
         event.preventDefault()
       }
     },
+    computed: {
+      ...mapGetters('errors', [
+        'getError'
+      ])
+    },
     components: {
-      Loader
+      Loader,
+      FormGroup
     }
   }
 </script>
 
-<style scoped>
-body {
-  background: #e75348 !important
-}
+<style lang="sass" scoped>
+.sn-field + .t-error
+  margin-bottom: 0
 </style>

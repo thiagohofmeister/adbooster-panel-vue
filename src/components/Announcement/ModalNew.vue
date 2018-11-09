@@ -113,8 +113,7 @@
         'getError'
       ]),
       ...mapFields({
-        user: 'user.user',
-        errors: 'errors.errors'
+        user: 'user.user'
       })
     },
     components: {

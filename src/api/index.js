@@ -12,6 +12,15 @@ export default {
     return (await axios.post(process.env.API_URL + `/authenticate`, userData)).data
   },
   /**
+   * Realiza o cadastro do usuário no sistema.
+   *
+   * @param {Object} userData
+   * @returns {Promise<any>}
+   */
+  async register (userData) {
+    return (await axios.post(process.env.API_URL + `/register`, userData)).data
+  },
+  /**
    * Retorna o usuário logado.
    *
    * @returns {Promise<any>}
