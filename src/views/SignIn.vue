@@ -7,7 +7,7 @@
           <div class="col-lg-6">
             <div class="cmp-info">
               <div class="cm-logo">
-                <img src="/static/images/cm-logo.png" alt="">
+                <img src="/static/images/logo/logo-orange.png" width="200" alt="">
                 <p>Adbooster é uma rede social especializada em impulsionamento de vendas. Nela você poderá vender ou comprar seus produtos.</p>
               </div>
               <img src="/static/images/cm-main-img.png" alt="">

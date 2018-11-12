@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col-1 text-center">
-          <a href="/" title="" class="logo"><img src="/static/images/logo.png" alt=""></a>
+          <a href="/" title="" class="logo"><img src="/static/images/logo/logo-white-icn.png" width="30" alt=""></a>
         </div>
 
         <div class="col-4">
