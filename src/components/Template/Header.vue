@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col-1 text-center">
-          <a href="/" title="" class="logo"><img src="/static/images/logo/logo-white-icn.png" width="30" alt=""></a>
+          <a href="/" title="" class="logo"><img src="/static/images/logo/logo-white-icn.png" alt=""></a>
         </div>
 
         <div class="col-4">
@@ -60,6 +60,9 @@
     margin-right: 14px
     margin-top: 10px
     display: inline-block
+
+    img
+      width: 40px
 
   .logo.pd-btm
     padding-bottom: 10px
