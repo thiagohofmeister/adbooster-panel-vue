@@ -1404,33 +1404,6 @@ select {
 	display: block;
 }
 
-.cmp-info {
-	float: left;
-	width: 100%;
-	padding: 70px 5px 92px 5px;
-}
-.cm-logo {
-	float: left;
-	width: 100%;
-	padding-left: 45px;
-	margin-bottom: 120px;
-}
-.cm-logo img {
-	margin-bottom: 30px;
-}
-.cm-logo > p {
-	color: #000000;
-	font-size: 14px;
-	font-weight: 700;
-	line-height: 24px;
-	float: left;
-	width: 100%;
-}
-.cmp-info > img {
-	width: 100%;
-	padding-left: 10px;
-}
-
 /* =============== login-sec ============= */
 
 .login-sec {
@@ -1663,7 +1636,6 @@ select {
 	visibility: visible;
 }
 .fgt-sec small {
-	float: left;
 	color: #000000;
 	font-size: 14px;
 	font-weight: 600;

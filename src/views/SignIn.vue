@@ -7,7 +7,7 @@
           <div class="col-lg-6">
             <div class="cmp-info">
               <div class="cm-logo">
-                <img src="/static/images/logo/logo-orange.png" width="200" alt="">
+                <img src="/static/images/logo/logo-orange.png" alt="">
                 <p>Adbooster é uma rede social especializada em impulsionamento de vendas. Nela você poderá vender ou comprar seus produtos.</p>
               </div>
               <img src="/static/images/cm-main-img.png" alt="">
@@ -73,7 +73,7 @@
                       <FormGroup :columns="0" :error="getError('gender')">
                         <div class="sn-field">
                           <select v-model="userRegister.gender">
-                            <option>Gênero</option>
+                            <option value="">Gênero</option>
                             <option value="male">Masculino</option>
                             <option value="female">Feminino</option>
                             <option value="other">Outro</option>
@@ -105,8 +105,9 @@
                           <input type="checkbox" v-model="acceptTerms" name="cc" id="c2">
                           <label for="c2">
                             <span></span>
+
+                            <small>Sim, eu concordo com os termos e condições de uso do AdBooster.</small>
                           </label>
-                          <small>Sim, eu concordo com os termos e condições de uso do AdBooster.</small>
                         </div>
                       </div>
                     </div>
@@ -234,4 +235,32 @@
 <style lang="sass" scoped>
 .sn-field + .t-error
   margin-bottom: 0
+
+.cmp-info
+  float: left
+  width: 100%
+  padding: 70px 5px 92px 5px
+
+.cm-logo
+  float: left
+  width: 100%
+  padding-left: 45px
+  margin-bottom: 120px
+
+.cm-logo img
+  margin-bottom: 30px
+  max-width: 100%
+
+.cm-logo > p
+  color: #000000
+  font-size: 14px
+  font-weight: 700
+  line-height: 24px
+  float: left
+  width: 100%
+
+.cmp-info > img
+  width: 100%
+  padding-left: 10px
+
 </style>
