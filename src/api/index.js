@@ -31,13 +31,42 @@ export default {
   /**
    * Retorna a timeline do usuário.
    *
-   * @param options
+   * @param {Object} options
    * @returns {Promise<any>}
    */
   async getTimeLineUser (options) {
     return (await request.get(`/announcement`, {
       params: options
     })).data
+  },
+  /**
+   * Retorna os convites de amizade do usuário.
+   *
+   * @param {string} userCode
+   * @returns {Promise<any>}
+   */
+  async getInvitesFriendship (userCode) {
+    return (await request.get(`/user/retrieve_friendships_pending/${userCode}`)).data
+  },
+  /**
+   * Retorna os convites de amizade do usuário.
+   *
+   * @param {string} loggedUser
+   * @param {string} inviteUser
+   * @returns {Promise<any>}
+   */
+  async acceptInviteFriendship (loggedUser, inviteUser) {
+    return (await request.get(`/friendship/accept/${loggedUser}/${inviteUser}`)).data
+  },
+  /**
+   * Retorna os convites de amizade do usuário.
+   *
+   * @param {string} loggedUser
+   * @param {string} inviteUser
+   * @returns {Promise<any>}
+   */
+  async declineInviteFriendship (loggedUser, inviteUser) {
+    return (await request.get(`/friendship/decline/${loggedUser}/${inviteUser}`)).data
   },
   /**
    * Envia uma imagem.

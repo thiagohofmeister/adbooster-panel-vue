@@ -6,7 +6,14 @@
       </span>
 
       <div class="drop-inner" v-bind:class="{ show: flags.showFriendInvites }" aria-labelledby="dropdownMenuButton">
-        Solicitações
+        <div class="row">
+          <div class="col-12" v-for="invite in invites" :key="invite">
+            <Invite :invite="invite" @change="fetchInviteFriendship"/>
+          </div>
+          <div class="col-12 text-center no-invites" v-if="!invites.length">
+            Não há solicitações de amizade.
+          </div>
+        </div>
       </div>
     </div>
 
@@ -50,6 +57,8 @@
 
 <script>
   import { mapActions } from 'vuex'
+  import { mapFields } from 'vuex-map-fields'
+  import Invite from '@/components/Friendship/Invite'
 
   export default {
     data: () => ({
@@ -60,9 +69,13 @@
         showOptions: false
       }
     }),
+    mounted () {
+      this.fetch()
+    },
     methods: {
       ...mapActions('user', [
-        'logout'
+        'logout',
+        'fetchInviteFriendship'
       ]),
       toggleFriendInvites () {
         this.hideAll('showFriendInvites')
@@ -88,7 +101,20 @@
             this.flags[flagName] = false
           }
         }
+      },
+      fetch () {
+        this.fetchInviteFriendship()
+          .then(() => {})
+          .catch(() => {})
       }
+    },
+    computed: {
+      ...mapFields({
+        invites: 'user.invites'
+      })
+    },
+    components: {
+      Invite
     }
   }
 </script>
@@ -105,6 +131,11 @@
 
     &:not(:first-child)
       margin-left: 15px
+
+    &.friend-invites
+
+      .drop-inner
+        width: 320px
 
     &.chats
       width: 26px
@@ -129,8 +160,9 @@
   .drop-inner
     width: 120px
     background: #FFF
-    padding: 15px
+    padding: 15px 0
     position: absolute
+    z-index: 3
     top: 44px
     right: 0
     display: none
@@ -169,5 +201,8 @@
 
       &:hover
         color: #e44d3a
+
+  .no-invites
+    padding: 20px 0
 
 </style>

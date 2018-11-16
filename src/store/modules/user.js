@@ -7,9 +7,19 @@ export default {
     fetching: false,
     user: null,
     totalAnnouncements: 0,
-    announcements: []
+    announcements: [],
+    invites: []
   },
   actions: {
+    fetchInviteFriendship ({ state, commit }) {
+      if (!state.user) {
+        return
+      }
+
+      api.getInvitesFriendship(state.user._id.$oid)
+        .then(invites => commit('fetchInvitesFriendship', invites))
+        .catch(() => commit('fetchInvitesFriendship', []))
+    },
     fetchTimeLine ({ state, commit }) {
       if (!state.user) {
         return
@@ -45,6 +55,9 @@ export default {
     }
   },
   mutations: {
+    fetchInvitesFriendship (state, invites) {
+      state.invites = invites
+    },
     fetchTimeLine (state, { total, items }) {
       state.totalAnnouncements = total
       state.announcements = items
