@@ -52,13 +52,18 @@ export default {
           commit('fetchTimeLine', { total: 0, items: [] })
         })
     },
+    refreshUser ({ state, commit }) {
+      if (!state.user) {
+        return
+      }
+
+      api.getUser()
+        .then(user => commit('addUser', user))
+        .catch(() => {})
+    },
     addUser ({ state, commit }, user) {
       commit('fetching', true)
       Cookie.set('token', user.authentication.token)
-
-      if (!user.image) {
-        user.image = '/static/images/no-photo.jpg'
-      }
 
       commit('addUser', user)
     },
@@ -77,6 +82,10 @@ export default {
       state.fetching = false
     },
     addUser (state, userToAdd) {
+      if (!userToAdd.image) {
+        userToAdd.image = '/static/images/no-photo.jpg'
+      }
+
       state.user = userToAdd
       state.fetching = false
     },

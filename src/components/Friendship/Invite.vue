@@ -19,6 +19,7 @@
 </template>
 
 <script>
+  import { mapActions } from 'vuex'
   import { mapFields } from 'vuex-map-fields'
   import api from '@/api'
 
@@ -30,9 +31,12 @@
       }
     },
     methods: {
+      ...mapActions('user', [
+        'refreshUser'
+      ]),
       accept () {
         api.acceptInviteFriendship(this.user._id.$oid, this.invite._id.$oid)
-          .then(result => console.log(result))
+          .then(() => this.refreshUser())
           .catch(() => {})
           .then(() => this.$emit('change'))
       },
