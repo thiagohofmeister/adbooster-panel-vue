@@ -8,10 +8,12 @@
 
         <div class="col-4">
           <div class="search-bar">
-            <FormGroup :columns="0">
-              <input type="text" v-model="search" name="search" placeholder="Encontrar amigos"/>
-              <button @click="findUsers"><i class="la la-search"></i></button>
-            </FormGroup>
+            <form>
+              <FormGroup :columns="0">
+                <input type="text" v-model="search" name="search" placeholder="Encontrar amigos"/>
+                <button @click="findUsers"><i class="la la-search"></i></button>
+              </FormGroup>
+            </form>
           </div>
         </div>
 
@@ -37,13 +39,14 @@
       search: null
     }),
     methods: {
-      findUsers () {
+      findUsers (e) {
         if (!this.search) {
           return
         }
 
-        console.log('asd')
         this.$router.push({ name: 'search', params: { search: this.search } })
+
+        e.preventDefault()
       }
     },
     components: {

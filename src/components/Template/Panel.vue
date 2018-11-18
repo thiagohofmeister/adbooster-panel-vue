@@ -32,6 +32,8 @@
     width: 100%
     position: relative
     padding: 20px 20px 15px 20px
+    border-bottom: 1px solid #dddfe2
+    margin-bottom: 20px
 
   .panel-body
     width: 100%

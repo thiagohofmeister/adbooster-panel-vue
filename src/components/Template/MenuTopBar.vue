@@ -3,15 +3,21 @@
     <div class="drop friend-invites">
       <span class="btn-action" v-bind:class="{ active: flags.showFriendInvites }" @click="toggleFriendInvites">
         <i class="fa fa-user-friends"></i>
+        <span class="count" v-if="invites.length">{{ invites.length }}</span>
       </span>
 
       <div class="drop-inner" v-bind:class="{ show: flags.showFriendInvites }" aria-labelledby="dropdownMenuButton">
+        <div class="row drop-title">
+          <div class="col-12">
+            Solicitações de amizade
+          </div>
+        </div>
         <div class="row">
           <div class="col-12" v-for="invite in invites" :key="invite">
             <Invite :invite="invite" @change="fetchInviteFriendship"/>
           </div>
           <div class="col-12 text-center no-invites" v-if="!invites.length">
-            Não há solicitações de amizade.
+            Nenhuma nova solicitação
           </div>
         </div>
       </div>
@@ -20,16 +26,22 @@
     <div class="drop chats">
       <span class="btn-action" v-bind:class="{ active: flags.showChats }" @click="toggleChats">
         <i class="fa fa-comment"></i>
+        <span class="count" v-if="conversations.length">{{ conversations.length }}</span>
       </span>
 
       <div class="drop-inner" v-bind:class="{ show: flags.showChats }" aria-labelledby="dropdownMenuButton">
-        Conversas
+        <div class="row drop-title">
+          <div class="col-12">
+            Conversas
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="drop notifications">
       <span class="btn-action" v-bind:class="{ active: flags.showNotifications }" @click="toggleNotifications">
         <i class="fa fa-bell"></i>
+        <span class="count" v-if="notifications.length">{{ notifications.length }}</span>
       </span>
 
       <div class="drop-inner" v-bind:class="{ show: flags.showNotifications }" aria-labelledby="dropdownMenuButton">
@@ -71,6 +83,7 @@
     }),
     mounted () {
       this.fetch()
+      setInterval(() => this.fetch(), 5000)
     },
     methods: {
       ...mapActions('user', [
@@ -104,13 +117,13 @@
       },
       fetch () {
         this.fetchInviteFriendship()
-          .then(() => {})
-          .catch(() => {})
       }
     },
     computed: {
       ...mapFields({
-        invites: 'user.invites'
+        invites: 'user.invites',
+        conversations: 'user.conversations',
+        notifications: 'user.notifications'
       })
     },
     components: {
@@ -120,6 +133,13 @@
 </script>
 
 <style lang="sass" scoped>
+  .drop-title
+    font-size: 13px
+    font-weight: bold
+    border-bottom: 1px solid #dddfe2
+    padding-bottom: 10px
+    margin-bottom: 10px
+
   .actions
     margin: 14px 0
 
@@ -187,6 +207,7 @@
   .btn-action
     cursor: pointer
     color: #531f15
+    position: relative
 
     &.active
       color: #fff
@@ -194,7 +215,24 @@
     i
       font-size: 25px
 
-  .options-container
+    .count
+      display: flex
+      position: absolute
+      right: -5px
+      top: -10px
+      background-color: #4267b2
+      border-radius: 2px
+      color: #fff
+      padding: 1px 3px
+      background-clip: padding-box
+      display: inline-block
+      font-family: 'helvetica neue', Helvetica, Arial, sans-serif
+      font-size: 10px
+      -webkit-font-smoothing: subpixel-antialiased
+      line-height: 1.3
+      min-height: 13px
+
+    .options-container
 
     .options-item
       cursor: pointer
@@ -204,5 +242,6 @@
 
   .no-invites
     padding: 20px 0
+    font-size: 14px
 
 </style>

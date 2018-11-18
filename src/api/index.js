@@ -49,7 +49,7 @@ export default {
     return (await request.get(`/user/retrieve_friendships_pending/${userCode}`)).data
   },
   /**
-   * Retorna os convites de amizade do usuário.
+   * Aceita uma solicitação de amizade.
    *
    * @param {string} loggedUser
    * @param {string} inviteUser
@@ -59,7 +59,16 @@ export default {
     return (await request.get(`/friendship/accept/${loggedUser}/${inviteUser}`)).data
   },
   /**
-   * Retorna os convites de amizade do usuário.
+   * Adiciona um novo amigo.
+   *
+   * @param {Object} friendship
+   * @returns {Promise<any>}
+   */
+  async addInviteFriendship (friendship) {
+    return (await request.post(`/friendship/invite`, friendship)).data
+  },
+  /**
+   * Recusa uma solicitação de amizade.
    *
    * @param {string} loggedUser
    * @param {string} inviteUser
@@ -67,6 +76,16 @@ export default {
    */
   async declineInviteFriendship (loggedUser, inviteUser) {
     return (await request.get(`/friendship/decline/${loggedUser}/${inviteUser}`)).data
+  },
+  /**
+   * Remove uma amizade.
+   *
+   * @param {string} loggedUser
+   * @param {string} inviteUser
+   * @returns {Promise<any>}
+   */
+  async unfriendshipInviteFriendship (loggedUser, inviteUser) {
+    return (await request.get(`/friendship/remove/${loggedUser}/${inviteUser}`)).data
   },
   /**
    * Envia uma imagem.
@@ -84,5 +103,14 @@ export default {
    */
   async publishAnnouncement (announcement) {
     return (await request.post(`/announcement/publish`, announcement)).data
+  },
+  /**
+   * Retorna os convites de amizade do usuário.
+   *
+   * @param {string} search
+   * @returns {Promise<any>}
+   */
+  async findUsers (search) {
+    return (await request.get(`/user/search/${search}`)).data
   }
 }

@@ -1,5 +1,6 @@
 import api from '@/api'
 import Cookie from 'vue-cookie'
+import notifier from '@/notifier'
 
 export default {
   namespaced: true,
@@ -8,7 +9,10 @@ export default {
     user: null,
     totalAnnouncements: 0,
     announcements: [],
-    invites: []
+    invites: [],
+    conversations: [],
+    notifications: [],
+    flagNotifierNewInvite: false
   },
   actions: {
     fetchInviteFriendship ({ state, commit }) {
@@ -16,9 +20,18 @@ export default {
         return
       }
 
+      const count = state.invites.length
+
       api.getInvitesFriendship(state.user._id.$oid)
         .then(invites => commit('fetchInvitesFriendship', invites))
         .catch(() => commit('fetchInvitesFriendship', []))
+        .then(() => {
+          if (count < state.invites.length && state.flagNotifierNewInvite) {
+            notifier.success('Nova solicitação de amizade', 'Solicitações de amizade')
+          }
+
+          state.flagNotifierNewInvite = true
+        })
     },
     fetchTimeLine ({ state, commit }) {
       if (!state.user) {

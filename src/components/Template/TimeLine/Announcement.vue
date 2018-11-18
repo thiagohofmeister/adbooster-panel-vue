@@ -93,6 +93,7 @@ export default {
     text-align: center
 
     img
+      max-width: 100%
       max-height: 270px
 
   .usy-dt
