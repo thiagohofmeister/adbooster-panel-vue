@@ -8,7 +8,7 @@
           </div>
         </div>
 
-        <div class="col-4 el-col-md-offset-12">
+        <div class="col-4 el-col-offset-12">
           <div class="text-right align-middle">
             <button class="btn btn-primary btnAnnouncement" @click="showModal()">Anunciar</button>
           </div>

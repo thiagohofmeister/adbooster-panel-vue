@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import Comment from '@/components/Template/TimeLine/Comments/Comment'
-import NewComment from '@/components/Template/TimeLine/Comments/NewComment'
+import Comment from '@/components/TimeLine/Comments/Comment'
+import NewComment from '@/components/TimeLine/Comments/NewComment'
 
 export default {
   components: {

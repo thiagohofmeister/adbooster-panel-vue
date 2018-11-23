@@ -1,6 +1,9 @@
 <template>
   <div class="col-lg-3 pd-right-none no-pd">
     <div class="right-sidebar">
+      <SmallAd/>
+
+      <MoreImpulsed></MoreImpulsed>
     </div>
   </div>
 </template>

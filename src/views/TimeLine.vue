@@ -12,10 +12,10 @@
 <script>
   import { mapActions } from 'vuex'
   import { mapFields } from 'vuex-map-fields'
-  import Loader from '@/components/Template/TimeLine/Loader'
-  import CreateNewAnnouncement from '@/components/Template/TimeLine/CreateNewAnnouncement'
-  import Announcement from '@/components/Template/TimeLine/Announcement'
-  import TopSellers from '@/components/Template/TimeLine/TopSellers'
+  import Loader from '@/components/TimeLine/Loader'
+  import CreateNewAnnouncement from '@/components/TimeLine/CreateNewAnnouncement'
+  import Announcement from '@/components/TimeLine/Announcement'
+  import TopSellers from '@/components/TimeLine/TopSellers'
 
   export default {
     name: 'TimeLine',

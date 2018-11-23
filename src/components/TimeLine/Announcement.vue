@@ -26,24 +26,14 @@
           <h3>{{ announcement.title }}</h3>
 
           <ul class="job-dt">
-            <li><a href="#" title="">Preço</a></li>
             <li><span class="previous-price">{{ announcement.previousPrice | currency }}</span></li>
             <li><span>{{ announcement.currentPrice | currency }}</span></li>
           </ul>
         </div>
 
         <div class="job-status-bar">
-          <ul class="like-com">
-            <li>
-              <a href="#"><i class="la la-shopping-cart"></i> Comprar</a>
-            </li>
-
-            <li>
-              <a href="#"><i class="la la-heart"></i> Impulsionar</a>
-              <img src="/static/images/liked-img.png" alt=""/>
-              <span>{{ announcement.impulses.length }}</span>
-            </li>
-          </ul>
+          <span @click="buy()"><i class="la la-shopping-cart"></i> Comprar</span>
+          <span @click="impulse()"><i v-bind:class="{ far: !isImpulsed, fa: isImpulsed }" class="fa-heart"></i> {{ isImpulsed ? 'Impulsionado' : 'Impulsionar' }}</span>
         </div>
       </div>
     </div>
@@ -51,19 +41,47 @@
 </template>
 
 <script>
-import CommentsList from '@/components/Template/TimeLine/Comments/List'
+  import { mapFields } from 'vuex-map-fields'
+  import CommentsList from '@/components/TimeLine/Comments/List'
 
-export default {
-  props: {
-    announcement: {
-      type: Object,
-      required: true
+  export default {
+    props: {
+      announcement: {
+        type: Object,
+        required: true
+      }
+    },
+    mounted () {
+      console.log(this.announcement.impulses)
+    },
+    methods: {
+      buy () {
+
+      },
+      impulse () {
+
+      }
+    },
+    computed: {
+      ...mapFields({
+        user: 'user.user'
+      }),
+      isImpulsed () {
+        for (let i in this.announcement.impulses) {
+          const impulse = this.announcement.impulses[i].owner
+
+          if (impulse === this.user._id.$oid) {
+            return true
+          }
+        }
+
+        return false
+      }
+    },
+    components: {
+      CommentsList
     }
-  },
-  components: {
-    CommentsList
   }
-}
 </script>
 
 <style lang="sass" scoped>
@@ -99,7 +117,6 @@ export default {
   .usy-dt
 
   .usy-dt > img
-    float: left
     width: 50px
     -webkit-border-radius: 100px
     -moz-border-radius: 100px
@@ -107,6 +124,8 @@ export default {
     -o-border-radius: 100px
     border-radius: 100px
     margin-right: 10px
+    display: inline-block
+    vertical-align: middle
 
   .ed-opts
     position: relative
@@ -157,6 +176,8 @@ export default {
 
   .usy-name
     margin-left: 10px
+    display: inline-block
+    vertical-align: middle
 
   .usy-name h3
     color: #000000
@@ -207,19 +228,20 @@ export default {
     padding: 0 20px 20px 20px
     border-bottom: 1px solid #e5e5e5
 
-  .job_descp h3
-    color: #000000
-    font-size: 18px
-    font-weight: 600
-    margin-bottom: 20px
+    h3
+      color: #000000
+      font-size: 22px
+      font-weight: 600
+      margin-bottom: 20px
 
   .job-dt
     width: 100%
-    margin-bottom: 22px
 
   .job-dt li
-    display: inline-block
     margin-right: 15px
+
+    &:first-child
+      margin-bottom: 10px
 
   .job-dt li a
     color: #fff
@@ -237,17 +259,19 @@ export default {
 
   .job-dt li span
     color: #000000
-    font-size: 16px
+    font-size: 20px
     font-weight: 600
+
+    &.previous-price
+      text-decoration: line-through
+      color: #e1e1e1
+      font-size: 16px
 
   .job_descp > p
     color: #686868
     font-size: 16px
     line-height: 24px
     margin-bottom: 20px
-
-  .previous-price
-    text-decoration: line-through
 
   .job_descp > p a
     color: #e44d3a
@@ -263,7 +287,6 @@ export default {
     vertical-align: top
 
   .like-com li a
-    float: left
     color: #b2b2b2
     font-size: 14px
     margin-top: 6px
@@ -282,7 +305,6 @@ export default {
     top: 2px
 
   .like-com li span
-    float: left
     color: #ffffff
     font-size: 13px
     width: 30px
@@ -306,13 +328,18 @@ export default {
     margin-right: 10px
 
 
-  .job-status-bar > a
-    float: right
+  .job-status-bar > span
     color: #b2b2b2
     font-size: 14px
-    margin-top: 5px
+    cursor: pointer
 
-  .job-status-bar > a i
+    &:not(:first-child)
+      margin-left: 20px
+
+    &:hover
+      color: #e44d3a
+
+  .job-status-bar > span i
     font-size: 20px
     margin-right: 7px
     position: relative
