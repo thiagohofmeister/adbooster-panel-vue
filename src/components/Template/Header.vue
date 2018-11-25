@@ -40,13 +40,13 @@
     }),
     methods: {
       findUsers (e) {
+        e.preventDefault()
+
         if (!this.search) {
           return
         }
 
         this.$router.push({ name: 'search', params: { search: this.search } })
-
-        e.preventDefault()
       }
     },
     components: {

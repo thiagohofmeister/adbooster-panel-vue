@@ -1,23 +1,28 @@
 <template>
-  <div>
-    <Panel>
-      <div slot="header">
-        Buscando por "{{ search }}"
-      </div>
+  <Panel>
+    <Loader :loading="loading"/>
+    <div slot="header">
+      Buscando por "{{ search }}"
+    </div>
 
-      <UserCard v-for="user in users" :key="user" :user="user" @change="find"/>
-    </Panel>
-  </div>
+    <UserCard v-for="user in users" :key="user" :user="user" @change="find"/>
+
+    <div v-if="!users.length" class="text-center">
+      Nenhum usuário encontrado.
+    </div>
+  </Panel>
 </template>
 
 <script>
   import api from '@/api'
   import Panel from '@/components/Template/Panel'
   import UserCard from '@/components/Search/UserCard'
+  import Loader from '@/components/Template/Loader'
 
   export default {
     data: () => ({
-      users: []
+      users: [],
+      loading: false
     }),
     props: {
       search: {
@@ -30,12 +35,16 @@
     },
     methods: {
       find () {
+        this.loading = true
+
         api.findUsers(this.search)
           .then(result => {
             const { items } = result
 
             this.users = items
           })
+          .catch(() => { this.users = [] })
+          .then(() => { this.loading = false })
       }
     },
     watch: {
@@ -45,7 +54,8 @@
     },
     components: {
       Panel,
-      UserCard
+      UserCard,
+      Loader
     }
   }
 </script>
