@@ -64,6 +64,7 @@
         stock: 0,
         description: '',
         creator: '',
+        type: 'bronze',
         images: []
       },
       money: {
