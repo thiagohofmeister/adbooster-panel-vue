@@ -2,7 +2,7 @@
   <header>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-1 text-center">
+        <div class="col-1">
           <a href="/" title="" class="logo"><img src="/static/images/logo/logo-white-icn.png" alt=""></a>
         </div>
 
@@ -21,7 +21,7 @@
           <UserTopBar/>
         </div>
 
-        <div class="col-4">
+        <div class="col-4 el-col-offset-6 text-right">
           <MenuTopBar/>
         </div>
       </div>

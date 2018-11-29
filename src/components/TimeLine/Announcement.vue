@@ -33,7 +33,7 @@
 
         <div class="job-status-bar">
           <span @click="buy()"><i class="la la-shopping-cart"></i> Comprar</span>
-          <span @click="impulse()"><i v-bind:class="{ far: !isImpulsed, fa: isImpulsed }" class="fa-heart"></i> {{ isImpulsed ? 'Impulsionado' : 'Impulsionar' }}</span>
+          <span @click="impulse()" v-if="!isOwner" class="btn" v-bind:class="{ 'is-loading': loading }"><i v-bind:class="{ far: !isImpulsed, fa: isImpulsed }" class="fa-heart"></i> {{ isImpulsed ? 'Impulsionado' : 'Impulsionar' }}</span>
         </div>
       </div>
     </div>
@@ -41,10 +41,16 @@
 </template>
 
 <script>
+  import api from '@/api'
   import { mapFields } from 'vuex-map-fields'
+  import { mapActions } from 'vuex'
   import CommentsList from '@/components/TimeLine/Comments/List'
 
   export default {
+    data: () => ({
+      isImpulsed: false,
+      loading: false
+    }),
     props: {
       announcement: {
         type: Object,
@@ -52,30 +58,66 @@
       }
     },
     mounted () {
-      console.log(this.announcement.impulses)
+      this.checkImpulsed()
     },
     methods: {
+      ...mapActions('user', [
+        'addImpulseAnnouncement'
+      ]),
       buy () {
 
       },
       impulse () {
+        this.loading = true
 
+        const owner = this.user._id.$oid
+        const origin = this.announcement.sharedBy._id.$oid
+
+        const impulse = {
+          announcementId: this.announcement._id.$oid,
+          impulse: {
+            owner: this.user._id.$oid,
+            origin: owner === origin ? null : origin
+          }
+        }
+
+        let result = null
+        if (this.isImpulsed) {
+          result = api.removeImpulseAnnouncement(impulse)
+        } else {
+          result = api.addImpulseAnnouncement(impulse)
+        }
+
+        result
+          .then(announcement => {
+            this.announcement.impulses = announcement.impulses
+            this.addImpulseAnnouncement(impulse)
+          })
+          .catch(() => {})
+          .then(() => {
+            this.checkImpulsed()
+            this.loading = false
+          })
+      },
+      checkImpulsed () {
+        for (let i in this.announcement.impulses) {
+          const impulse = this.announcement.impulses[i].owner
+
+          if (impulse === this.user._id.$oid) {
+            this.isImpulsed = true
+            return
+          }
+        }
+
+        this.isImpulsed = false
       }
     },
     computed: {
       ...mapFields({
         user: 'user.user'
       }),
-      isImpulsed () {
-        for (let i in this.announcement.impulses) {
-          const impulse = this.announcement.impulses[i].owner
-
-          if (impulse === this.user._id.$oid) {
-            return true
-          }
-        }
-
-        return false
+      isOwner () {
+        return this.user._id.$oid === this.announcement.sharedBy._id.$oid
       }
     },
     components: {

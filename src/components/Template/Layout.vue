@@ -10,11 +10,11 @@
 
             <SidebarLeft/>
 
-            <div class="col-lg-6 col-md-8 no-pd">
+            <div class="col-lg-9 no-pdd">
               <router-view/>
             </div>
 
-            <SidebarRight/>
+            <SidebarRight v-if="false"/>
           </div>
         </div>
       </main>

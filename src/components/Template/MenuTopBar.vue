@@ -8,7 +8,7 @@
 
       <div class="drop-inner" v-bind:class="{ show: flags.showFriendInvites }" aria-labelledby="dropdownMenuButton">
         <div class="row drop-title">
-          <div class="col-12">
+          <div class="col-12 text-center">
             Solicitações de amizade
           </div>
         </div>
@@ -16,6 +16,7 @@
           <div class="col-12" v-for="invite in invites" :key="invite">
             <Invite :invite="invite" @change="fetchInviteFriendship"/>
           </div>
+
           <div class="col-12 text-center no-invites" v-if="!invites.length">
             Nenhuma nova solicitação
           </div>
@@ -31,8 +32,14 @@
 
       <div class="drop-inner" v-bind:class="{ show: flags.showChats }" aria-labelledby="dropdownMenuButton">
         <div class="row drop-title">
-          <div class="col-12">
+          <div class="col-12 text-center">
             Conversas
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12 text-center no-invites" v-if="!conversations.length">
+            Nenhuma nova conversa
           </div>
         </div>
       </div>
@@ -45,7 +52,17 @@
       </span>
 
       <div class="drop-inner" v-bind:class="{ show: flags.showNotifications }" aria-labelledby="dropdownMenuButton">
-        Notificações
+        <div class="row drop-title">
+          <div class="col-12 text-center">
+            Notificações
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12 text-center no-invites" v-if="!notifications.length">
+            Nenhuma nova notificação
+          </div>
+        </div>
       </div>
     </div>
 
@@ -152,11 +169,6 @@
     &:not(:first-child)
       margin-left: 15px
 
-    &.friend-invites
-
-      .drop-inner
-        width: 320px
-
     &.chats
       width: 26px
       margin-left: 5px
@@ -178,7 +190,7 @@
         right: 2px
 
   .drop-inner
-    width: 120px
+    width: 300px
     background: #FFF
     padding: 15px 0
     position: absolute

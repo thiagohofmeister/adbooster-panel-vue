@@ -105,6 +105,24 @@ export default {
     return (await request.post(`/announcement/publish`, announcement)).data
   },
   /**
+   * Impulsiona um anúncio.
+   *
+   * @param {Object} impulse
+   * @returns {Promise<any>}
+   */
+  async addImpulseAnnouncement (impulse) {
+    return (await request.post(`/announcement/add_impulse`, impulse)).data
+  },
+  /**
+   * Impulsiona um anúncio.
+   *
+   * @param {Object} impulse
+   * @returns {Promise<any>}
+   */
+  async removeImpulseAnnouncement (impulse) {
+    return (await request.post(`/announcement/remove_impulse`, impulse)).data
+  },
+  /**
    * Retorna os convites de amizade do usuário.
    *
    * @param {string} search

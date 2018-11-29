@@ -52,6 +52,16 @@ export default {
           commit('fetchTimeLine', { total: 0, items: [] })
         })
     },
+    addImpulseAnnouncement ({ state, commit }, impulse) {
+      for (let i in state.announcements) {
+        const announcementState = state.announcements[i]
+
+        if (announcementState._id.$oid === impulse.announcementId) {
+          commit('addImpulseAnnouncement', { index: i, impulse: impulse.impulse })
+          break
+        }
+      }
+    },
     refreshUser ({ state, commit }) {
       if (!state.user) {
         return
@@ -88,6 +98,9 @@ export default {
 
       state.user = userToAdd
       state.fetching = false
+    },
+    addImpulseAnnouncement (state, { index, impulse }) {
+      state.announcements[index].impulse.push(impulse)
     },
     fetching (state, flag) {
       state.fetching = flag
