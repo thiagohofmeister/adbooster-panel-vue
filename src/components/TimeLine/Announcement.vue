@@ -11,7 +11,7 @@
                 <img :src="announcement.sharedBy.image" alt=""/>
                 <div class="usy-name">
                   <h3>{{ announcement.sharedBy.name }}</h3>
-                  <span><img src="/static/images/clock.png" alt=""/> {{ announcement.updated | moment('from', 'now') }}</span>
+                  <span><img src="/static/images/clock.png" alt=""/> {{ announcement.impulseDate | moment('from', 'now') }}</span>
                 </div>
               </div>
             </div>
@@ -101,9 +101,9 @@
       },
       checkImpulsed () {
         for (let i in this.announcement.impulses) {
-          const impulse = this.announcement.impulses[i].owner
+          const impulse = this.announcement.impulses[i]
 
-          if (impulse === this.user._id.$oid) {
+          if (impulse.owner === this.user._id.$oid && impulse.origin === this.announcement.sharedBy._id.$oid) {
             this.isImpulsed = true
             return
           }
