@@ -2,7 +2,7 @@
   <div>
     <Loader :loading="loading"/>
 
-    <div class="col-12" v-if="users.length">
+    <div class="col-12 users" v-if="users.length">
       <Panel>
         <div slot="header">
           <i class="fa fa-user"></i> Pessoas
@@ -90,9 +90,12 @@
 </script>
 
 <style lang="sass" scoped>
+  .users
+    margin-bottom: 30px
+
   h3
     font-size: 16px
-    margin: 30px 20px 20px
+    margin: 0 20px 20px
 
   i.notfound
     font-size: 90px
