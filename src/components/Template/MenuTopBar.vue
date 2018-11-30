@@ -159,6 +159,7 @@
 
   .actions
     margin: 14px 0
+    float: right
 
   .drop
     position: relative
@@ -186,8 +187,11 @@
     &.options
       width: 20px
 
-      .drop-inner::after
-        right: 2px
+      .drop-inner
+        width: 150px
+
+        &::after
+          right: 2px
 
   .drop-inner
     width: 300px
@@ -244,13 +248,14 @@
       line-height: 1.3
       min-height: 13px
 
-    .options-container
+  .options-container
+    padding: 0 20px
 
-    .options-item
-      cursor: pointer
+  .options-item
+    cursor: pointer
 
-      &:hover
-        color: #e44d3a
+    &:hover
+      color: #e44d3a
 
   .no-invites
     padding: 20px 0

@@ -32,8 +32,8 @@
         </div>
 
         <div class="job-status-bar">
-          <span @click="buy()"><i class="la la-shopping-cart"></i> Comprar</span>
-          <span @click="impulse()" v-if="!isOwner" class="btn" v-bind:class="{ 'is-loading': loading }"><i v-bind:class="{ far: !isImpulsed, fa: isImpulsed }" class="fa-heart"></i> {{ isImpulsed ? 'Impulsionado' : 'Impulsionar' }}</span>
+          <span @click="buy()" class="btn"><i class="fa fa-shopping-cart"></i> Comprar</span>
+          <ImpulseButton :announcement="announcement"/>
         </div>
       </div>
     </div>
@@ -41,87 +41,24 @@
 </template>
 
 <script>
-  import api from '@/api'
-  import { mapFields } from 'vuex-map-fields'
-  import { mapActions } from 'vuex'
   import CommentsList from '@/components/TimeLine/Comments/List'
+  import ImpulseButton from '@/components/Announcement/ImpulseButton'
 
   export default {
-    data: () => ({
-      isImpulsed: false,
-      loading: false
-    }),
     props: {
       announcement: {
         type: Object,
         required: true
       }
     },
-    mounted () {
-      this.checkImpulsed()
-    },
     methods: {
-      ...mapActions('user', [
-        'addImpulseAnnouncement'
-      ]),
       buy () {
-
-      },
-      impulse () {
-        this.loading = true
-
-        const owner = this.user._id.$oid
-        const origin = this.announcement.sharedBy._id.$oid
-
-        const impulse = {
-          announcementId: this.announcement._id.$oid,
-          impulse: {
-            owner: this.user._id.$oid,
-            origin: owner === origin ? null : origin
-          }
-        }
-
-        let result = null
-        if (this.isImpulsed) {
-          result = api.removeImpulseAnnouncement(impulse)
-        } else {
-          result = api.addImpulseAnnouncement(impulse)
-        }
-
-        result
-          .then(announcement => {
-            this.announcement.impulses = announcement.impulses
-            this.addImpulseAnnouncement(impulse)
-          })
-          .catch(() => {})
-          .then(() => {
-            this.checkImpulsed()
-            this.loading = false
-          })
-      },
-      checkImpulsed () {
-        for (let i in this.announcement.impulses) {
-          const impulse = this.announcement.impulses[i]
-
-          if (impulse.owner === this.user._id.$oid && impulse.origin === this.announcement.sharedBy._id.$oid) {
-            this.isImpulsed = true
-            return
-          }
-        }
-
-        this.isImpulsed = false
-      }
-    },
-    computed: {
-      ...mapFields({
-        user: 'user.user'
-      }),
-      isOwner () {
-        return this.user._id.$oid === this.announcement.sharedBy._id.$oid
+        this.$router.push(`/announcement/${this.announcement._id.$oid}/${this.announcement.sharedBy._id.$oid}`)
       }
     },
     components: {
-      CommentsList
+      CommentsList,
+      ImpulseButton
     }
   }
 </script>
@@ -155,19 +92,6 @@
     img
       max-width: 100%
       max-height: 270px
-
-  .usy-dt
-
-  .usy-dt > img
-    width: 50px
-    -webkit-border-radius: 100px
-    -moz-border-radius: 100px
-    -ms-border-radius: 100px
-    -o-border-radius: 100px
-    border-radius: 100px
-    margin-right: 10px
-    display: inline-block
-    vertical-align: middle
 
   .ed-opts
     position: relative
@@ -215,6 +139,17 @@
 
   .ed-opts > a:hover
     color: #e44d3a
+
+  .usy-dt > img
+    width: 50px
+    -webkit-border-radius: 100px
+    -moz-border-radius: 100px
+    -ms-border-radius: 100px
+    -o-border-radius: 100px
+    border-radius: 100px
+    margin-right: 10px
+    display: inline-block
+    vertical-align: middle
 
   .usy-name
     margin-left: 10px

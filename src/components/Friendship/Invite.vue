@@ -32,11 +32,17 @@
     },
     methods: {
       ...mapActions('user', [
-        'refreshUser'
+        'refreshUser',
+        'fetchTimeLine'
       ]),
       accept () {
         api.acceptInviteFriendship(this.user._id.$oid, this.invite._id.$oid)
-          .then(() => this.refreshUser())
+          .then(() => {
+            this.refreshUser()
+            if (this.totalAnnouncements <= 0) {
+              this.fetchTimeLine()
+            }
+          })
           .catch(() => {})
           .then(() => this.$emit('change'))
       },
@@ -49,7 +55,8 @@
     },
     computed: {
       ...mapFields({
-        user: 'user.user'
+        user: 'user.user',
+        totalAnnouncements: 'user.totalAnnouncements'
       })
     }
   }

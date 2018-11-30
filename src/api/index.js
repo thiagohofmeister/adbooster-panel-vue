@@ -40,6 +40,16 @@ export default {
     })).data
   },
   /**
+   * Retorna um anúncio.
+   *
+   * @param {string} code
+   * @param {string} sharedCode
+   * @returns {Promise<any>}
+   */
+  async getAnnouncement (code, sharedCode) {
+    return (await request.get(`/announcement/retrieve/${code}/${sharedCode}`)).data
+  },
+  /**
    * Retorna os convites de amizade do usuário.
    *
    * @param {string} userCode

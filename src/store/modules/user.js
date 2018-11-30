@@ -52,6 +52,18 @@ export default {
           commit('fetchTimeLine', { total: 0, items: [] })
         })
     },
+    addAnnouncement ({ state, commit }, { code, sharedCode }) {
+      if (!state.user) {
+        return
+      }
+
+      commit('fetching', true)
+      api.getAnnouncement(code, sharedCode)
+        .then(announcement => {
+          commit('addAnnouncement', announcement)
+        })
+        .catch(() => {})
+    },
     addImpulseAnnouncement ({ state, commit }, impulse) {
       for (let i in state.announcements) {
         const announcementState = state.announcements[i]
@@ -82,6 +94,9 @@ export default {
       api.getUser()
     }
   },
+  getters: {
+    getAnnouncement: state => (code, sharedCode) => state.announcements.find(announcement => announcement._id.$oid === code && announcement.sharedBy._id.$oid === sharedCode)
+  },
   mutations: {
     fetchInvitesFriendship (state, invites) {
       state.invites = invites
@@ -97,6 +112,11 @@ export default {
       }
 
       state.user = userToAdd
+      state.fetching = false
+    },
+    addAnnouncement (state, announcement) {
+      state.announcements.push(announcement)
+      state.totalAnnouncements = state.announcements.length
       state.fetching = false
     },
     addImpulseAnnouncement (state, { index, impulse }) {

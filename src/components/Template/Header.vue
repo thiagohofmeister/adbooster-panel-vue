@@ -21,7 +21,7 @@
           <UserTopBar/>
         </div>
 
-        <div class="col-4 el-col-offset-6 text-right">
+        <div class="col-4 el-col-offset-6">
           <MenuTopBar/>
         </div>
       </div>

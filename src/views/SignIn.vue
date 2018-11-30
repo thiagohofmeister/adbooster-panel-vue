@@ -41,7 +41,7 @@
                     </div>
                   </div>
                 </form>
-                <div class="login-resources">
+                <div class="login-resources" v-if="false">
                   <h4>Acessar com rede social</h4>
                   <ul>
                     <li><a href="#" title="" class="fb"><i class="fa fa-facebook"></i>Acessar com Facebook</a></li>
