@@ -33,11 +33,10 @@
     position: relative
     padding: 20px 20px 15px 20px
     border-bottom: 1px solid #dddfe2
-    margin-bottom: 20px
 
   .panel-body
     width: 100%
-    padding: 0 20px 20px 20px
+    padding: 20px
     border-bottom: 1px solid #e5e5e5
 
   .panel-footer

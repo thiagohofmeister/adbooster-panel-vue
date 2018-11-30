@@ -1,18 +1,21 @@
 <template>
   <div class="row">
-    <div class="col-2">
-      <img :src="user.image" alt="" class="user-image">
+    <div class="col-8">
+      <div class="usy-dt">
+        <img :src="user.image" alt=""/>
+        <div class="usy-name">
+          <h3>{{ user.name }}</h3>
+        </div>
+      </div>
     </div>
-    <div class="col-7">
-      <span>{{ user.name }}</span>
-    </div>
-    <div class="col-3 text-right">
+
+    <div class="col-4 text-right">
       <span class="btn btn-primary user-action" @click="add()" v-if="!user.statusAdd">
         Adicionar
       </span>
 
       <span class="btn btn-primary user-action" @click="remove()" v-else>
-        Desfazer
+        Desfazer amizade
       </span>
     </div>
   </div>
@@ -59,13 +62,35 @@
 </script>
 
 <style lang="sass" scoped>
-  .user-image
-    width: 48px
-    height: 48px
-    -webkit-border-radius: 100%
-    -moz-border-radius: 100%
-    border-radius: 100%
+  .usy-dt > img
+    width: 50px
+    -webkit-border-radius: 100px
+    -moz-border-radius: 100px
+    -ms-border-radius: 100px
+    -o-border-radius: 100px
+    border-radius: 100px
+    margin-right: 10px
+    display: inline-block
+    vertical-align: middle
 
-  .user-action
-    margin: 6px 0
+  .usy-name
+    margin-left: 10px
+    display: inline-block
+    vertical-align: top
+
+  .usy-name h3
+    color: #000000
+    font-size: 16px
+    text-transform: capitalize
+    font-weight: 600
+    margin-bottom: 6px
+    margin-top: 2px
+
+  .usy-name span
+    color: #b2b2b2
+    font-size: 14px
+
+  .usy-name img
+    margin-top: 2px
+    margin-right: 6px
 </style>

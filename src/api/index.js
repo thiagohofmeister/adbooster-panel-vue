@@ -133,12 +133,12 @@ export default {
     return (await request.post(`/announcement/remove_impulse`, impulse)).data
   },
   /**
-   * Retorna os convites de amizade do usuário.
+   * Faz uma pesquisa por usuários e anúncios.
    *
    * @param {string} search
    * @returns {Promise<any>}
    */
-  async findUsers (search) {
-    return (await request.get(`/user/search/${search}`)).data
+  async search (search) {
+    return (await request.get(`/search/retrieve/${search}`)).data
   }
 }
