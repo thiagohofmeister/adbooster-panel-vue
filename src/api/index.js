@@ -50,6 +50,15 @@ export default {
     return (await request.get(`/announcement/retrieve/${code}/${sharedCode}`)).data
   },
   /**
+   * Compra um anúncio.
+   *
+   * @param {Object} order
+   * @returns {Promise<any>}
+   */
+  async buyAnnouncement (order) {
+    return (await request.post(`/order/create`, order)).data
+  },
+  /**
    * Retorna os convites de amizade do usuário.
    *
    * @param {string} userCode
@@ -133,6 +142,15 @@ export default {
     return (await request.post(`/announcement/remove_impulse`, impulse)).data
   },
   /**
+   * Adiciona um endereço de entrega.
+   *
+   * @param {Object} shippingAddress
+   * @returns {Promise<any>}
+   */
+  async addShippingAddress (shippingAddress) {
+    return (await request.post(`/user/add_shipping_address`, shippingAddress)).data
+  },
+  /**
    * Faz uma pesquisa por usuários e anúncios.
    *
    * @param {string} search
@@ -140,5 +158,14 @@ export default {
    */
   async search (search) {
     return (await request.get(`/search/retrieve/${search}`)).data
+  },
+  /**
+   * Busca o endereço pelo CEP.
+   *
+   * @param {string} cep
+   * @returns {Promise<any>}
+   */
+  async getCep (cep) {
+    return (await axios.get(`https://viacep.com.br/ws/${cep}/json`)).data
   }
 }

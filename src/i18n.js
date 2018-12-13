@@ -8,6 +8,32 @@ export default new VueI18n({
   silentTranslationWarn: true,
   messages: {
     'pt-br': {
+      address: {
+        state: {
+          label: 'UF'
+        },
+        city: {
+          label: 'Cidade'
+        },
+        district: {
+          label: 'Bairro'
+        },
+        street: {
+          label: 'Rua'
+        },
+        number: {
+          label: 'Número'
+        },
+        reference: {
+          label: 'Referência'
+        },
+        zipCode: {
+          label: 'CEP'
+        },
+        complement: {
+          label: 'Complemento'
+        }
+      },
       validationError: {
         greaterThan: {
           label: 'Campo deve ser maior do que \'{msg}\''

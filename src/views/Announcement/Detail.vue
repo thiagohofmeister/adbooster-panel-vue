@@ -24,7 +24,7 @@
       </span>
     </div>
 
-    <div slot="footer" class="actions">
+    <div slot="footer" class="actions" v-if="!isOwner">
       <span @click="buy()" class="btn"><i class="fa fa-shopping-cart"></i> Comprar</span>
       <ImpulseButton :announcement="announcement"/>
     </div>
@@ -33,6 +33,7 @@
 
 <script>
   import { mapActions, mapGetters } from 'vuex'
+  import { mapFields } from 'vuex-map-fields'
   import Panel from '@/components/Template/Panel'
   import Gallery from '@/components/Template/Gallery'
   import ImpulseButton from '@/components/Announcement/ImpulseButton'
@@ -49,16 +50,27 @@
       }
     },
     methods: {
+      ...mapActions('checkout', [
+        'addItemToCart'
+      ]),
       ...mapActions('user', [
         'addAnnouncement'
       ]),
       buy () {
+        this.addItemToCart(this.announcement)
+        this.$router.push('/checkout/cart')
       }
     },
     computed: {
+      ...mapFields({
+        user: 'user.user'
+      }),
       ...mapGetters('user', [
         'getAnnouncement'
       ]),
+      isOwner () {
+        return this.user._id.$oid === this.announcement.sharedBy._id.$oid
+      },
       announcement () {
         let announcement = this.getAnnouncement(this.code, this.sharedCode)
 

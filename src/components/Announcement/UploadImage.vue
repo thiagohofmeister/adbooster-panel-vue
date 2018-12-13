@@ -28,7 +28,7 @@
   import api from '@/api'
   import notifier from '@/notifier'
   import Loader from '@/components/Template/Loader'
-  import { applyDrag } from './utils/helpers'
+  import { applyDrag } from '@/utils/helpers'
 
   export default {
     data: () => ({
