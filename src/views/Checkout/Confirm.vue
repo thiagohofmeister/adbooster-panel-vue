@@ -96,7 +96,7 @@
         }))
           .then(order => {
             notifier.success('Compra realizada com sucesso.', 'Comprar anúncio')
-            // this.$router.push(`/orders/${order._id.$oid}`)
+            this.$router.push(`/orders/${order._id.$oid}`)
           })
           .catch(() => notifier.error('Erro ao finalizar a compra.', 'Comprar anúncio'))
       }
