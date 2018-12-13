@@ -20,7 +20,7 @@
       </span>
 
       <span>
-        {{ announcement.previousPrice | currency }}
+        {{ announcement.currentPrice | currency }}
       </span>
     </div>
 
@@ -69,7 +69,7 @@
         'getAnnouncement'
       ]),
       isOwner () {
-        return this.user._id.$oid === this.announcement.sharedBy._id.$oid
+        return this.user._id.$oid === this.announcement.sharedBy._id.$oid || this.announcement.impulses[0].owner === this.user._id.$oid
       },
       announcement () {
         let announcement = this.getAnnouncement(this.code, this.sharedCode)

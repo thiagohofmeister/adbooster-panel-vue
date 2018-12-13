@@ -9,6 +9,7 @@ import CheckoutShipping from '@/views/Checkout/Shipping'
 import CheckoutPayment from '@/views/Checkout/Payment'
 import CheckoutConfirm from '@/views/Checkout/Confirm'
 
+import OrderList from '@/views/Order/List'
 import OrderDetail from '@/views/Order/Detail'
 
 import NotFound from '@/views/NotFound'
@@ -28,7 +29,8 @@ const routes = [
     new Route(CheckoutShipping, '/checkout/shipping'),
     new Route(CheckoutPayment, '/checkout/payment'),
     new Route(CheckoutConfirm, '/checkout/confirm'),
-    new Route(OrderDetail, '/orders/:code')
+    new Route(OrderList, '/orders'),
+    new Route(OrderDetail, '/orders/:code', 'orders/detail')
   ]),
   new Route(NotFound, '/notFound'),
   new Route(SignIn, '/signIn', 'signin'),

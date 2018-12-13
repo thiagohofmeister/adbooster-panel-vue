@@ -3,6 +3,15 @@ import request from '@/api/request'
 
 export default {
   /**
+   * Busca o endereço pelo CEP.
+   *
+   * @param {string} cep
+   * @returns {Promise<any>}
+   */
+  async getCep (cep) {
+    return (await axios.get(`https://viacep.com.br/ws/${cep}/json`)).data
+  },
+  /**
    * Realiza a autenticação do usuário no sistema.
    *
    * @param {Object} userData
@@ -160,12 +169,23 @@ export default {
     return (await request.get(`/search/retrieve/${search}`)).data
   },
   /**
-   * Busca o endereço pelo CEP.
+   * Busca os pedidos do usuário logado.
    *
-   * @param {string} cep
+   * @param {Object} options
    * @returns {Promise<any>}
    */
-  async getCep (cep) {
-    return (await axios.get(`https://viacep.com.br/ws/${cep}/json`)).data
+  async getOrders (options) {
+    return (await request.get(`/order`, {
+      params: options
+    })).data
+  },
+  /**
+   * Busca um pedido pelo código.
+   *
+   * @param {string} code
+   * @returns {Promise<any>}
+   */
+  async getOrder (code) {
+    return (await request.get(`/order/retrieve/${code}`)).data
   }
 }

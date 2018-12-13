@@ -1,6 +1,3 @@
-// import api from '@/api'
-// import notifier from '@/notifier'
-
 export default {
   namespaced: true,
   state: {

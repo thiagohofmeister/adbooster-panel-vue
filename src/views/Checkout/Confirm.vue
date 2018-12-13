@@ -51,13 +51,14 @@
     </div>
 
     <div slot="footer" class="btn-continue">
-      <button class="btn" @click="goToBack()">Voltar</button>
-      <button class="btn btn-success" @click="confirm()">Confirmar</button>
+      <button class="btn" @click="goToBack()" :disabled="confirming">Voltar</button>
+      <button class="btn btn-success" @click="confirm()" :disabled="confirming" v-bind:class="{ 'is-loading': confirming }">Confirmar</button>
     </div>
   </Panel>
 </template>
 
 <script>
+  import { mapActions } from 'vuex'
   import api from '@/api'
   import notifier from '@/notifier'
   import Panel from '@/components/Template/Panel'
@@ -68,12 +69,18 @@
   import { omit } from '@/utils'
 
   export default {
+    data: () => ({
+      confirming: false
+    }),
     mounted () {
       if (!this.items.length || !this.shippingAddress || !this.paymentMethod) {
         this.goToBack()
       }
     },
     methods: {
+      ...mapActions('orders', [
+        'addOrder'
+      ]),
       addShippingAddress () {
         this.$modal.show('addShippingAddress')
       },
@@ -81,6 +88,8 @@
         this.$router.push('/checkout/payment')
       },
       confirm () {
+        this.confirming = true
+
         api.buyAnnouncement(omit({
           items: this.items.map(item => ({
             code: item.product._id.$oid,
@@ -92,13 +101,16 @@
           })),
           billingAddress: this.billingAddress,
           shippingAddress: this.shippingAddress,
-          customer: this.user._id.$oid
+          customer: this.user._id.$oid,
+          paymentMethod: 'wallet'
         }))
           .then(order => {
             notifier.success('Compra realizada com sucesso.', 'Comprar anúncio')
+            this.addOrder(order)
             this.$router.push(`/orders/${order._id.$oid}`)
           })
           .catch(() => notifier.error('Erro ao finalizar a compra.', 'Comprar anúncio'))
+          .finally(() => { this.confirming = false })
       }
     },
     computed: {

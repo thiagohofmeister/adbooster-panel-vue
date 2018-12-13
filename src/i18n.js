@@ -34,6 +34,33 @@ export default new VueI18n({
           label: 'Complemento'
         }
       },
+      order: {
+        statuses: {
+          pending: {
+            label: 'Pendente'
+          },
+          approved: {
+            label: 'Aprovado'
+          },
+          invoiced: {
+            label: 'Faturado'
+          },
+          shipped: {
+            label: 'Em transporte'
+          },
+          cancelled: {
+            label: 'Cancelado'
+          },
+          delivered: {
+            label: 'Entregue'
+          }
+        }
+      },
+      paymentMethod: {
+        wallet: {
+          label: 'Minha carteira'
+        }
+      },
       validationError: {
         greaterThan: {
           label: 'Campo deve ser maior do que \'{msg}\''
@@ -59,6 +86,9 @@ export default new VueI18n({
         type: {
           label: 'Tipo de dado inválido.'
         }
+      },
+      wallet: {
+        label: 'Minha carteira'
       }
     }
   }
