@@ -1,7 +1,7 @@
 <template>
   <div class="actions">
     <div class="drop friend-invites">
-      <span class="btn-action" v-bind:class="{ active: flags.showFriendInvites }" @click="toggleFriendInvites">
+      <span class="btn-action" v-bind:class="{ dropdownOpen: flags.showFriendInvites }" @click="toggleFriendInvites">
         <i class="fa fa-user-friends"></i>
         <span class="count" v-if="invites.length">{{ invites.length }}</span>
       </span>
@@ -25,7 +25,7 @@
     </div>
 
     <div class="drop chats">
-      <span class="btn-action" v-bind:class="{ active: flags.showChats }" @click="toggleChats">
+      <span class="btn-action" v-bind:class="{ dropdownOpen: flags.showChats }" @click="toggleChats">
         <i class="fa fa-comment"></i>
         <span class="count" v-if="conversations.length">{{ conversations.length }}</span>
       </span>
@@ -46,7 +46,7 @@
     </div>
 
     <div class="drop notifications">
-      <span class="btn-action" v-bind:class="{ active: flags.showNotifications }" @click="toggleNotifications">
+      <span class="btn-action" v-bind:class="{ dropdownOpen: flags.showNotifications }" @click="toggleNotifications">
         <i class="fa fa-bell"></i>
         <span class="count" v-if="notifications.length">{{ notifications.length }}</span>
       </span>
@@ -67,7 +67,7 @@
     </div>
 
     <div class="drop options">
-      <span class="btn-action" v-bind:class="{ active: flags.showOptions }" @click="toggleOptions">
+      <span class="btn-action" v-bind:class="{ dropdownOpen: flags.showOptions }" @click="toggleOptions">
         <i class="fa fa-caret-down"></i>
       </span>
 
@@ -225,7 +225,7 @@
     color: #531f15
     position: relative
 
-    &.active
+    &.dropdownOpen
       color: #fff
 
     i
