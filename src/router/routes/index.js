@@ -12,6 +12,11 @@ import CheckoutConfirm from '@/views/Checkout/Confirm'
 import OrderList from '@/views/Order/List'
 import OrderDetail from '@/views/Order/Detail'
 
+import SaleList from '@/views/Sale/List'
+import SaleDetail from '@/views/Sale/Detail'
+
+import Profile from '@/views/Profile'
+
 import NotFound from '@/views/NotFound'
 import SignIn from '@/views/SignIn'
 
@@ -30,7 +35,10 @@ const routes = [
     new Route(CheckoutPayment, '/checkout/payment'),
     new Route(CheckoutConfirm, '/checkout/confirm'),
     new Route(OrderList, '/orders'),
-    new Route(OrderDetail, '/orders/:code', 'orders/detail')
+    new Route(OrderDetail, '/orders/:code', 'orders/detail'),
+    new Route(SaleList, '/sales'),
+    new Route(SaleDetail, '/sales/:code', 'sales/detail'),
+    new Route(Profile, '/profile')
   ]),
   new Route(NotFound, '/notFound'),
   new Route(SignIn, '/signIn', 'signin'),

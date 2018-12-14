@@ -3,6 +3,10 @@
     <div class="row">
       <UserProfileResume/>
 
+      <div class="col-12">
+        <Wallet/>
+      </div>
+
       <SiteFooter v-if="false"/>
     </div>
   </div>
@@ -12,12 +16,14 @@
   import UserProfileResume from '@/components/User/ProfileResume'
   import FriendshipSuggestionsList from '@/components/Friendship/SuggestionList'
   import SiteFooter from '@/components/Template/Footer'
+  import Wallet from '@/views/Wallet'
 
   export default {
     components: {
       UserProfileResume,
       FriendshipSuggestionsList,
-      SiteFooter
+      SiteFooter,
+      Wallet
     }
   }
 </script>

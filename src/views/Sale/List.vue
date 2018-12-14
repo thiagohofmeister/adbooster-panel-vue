@@ -1,20 +1,20 @@
 <template>
-  <Panel v-if="!fetching">
+  <Panel>
     <Loader :loading="fetching"/>
-    <span slot="header">Meus pedidos</span>
+    <span slot="header">Minhas vendas</span>
 
-    <Item v-for="order in orders" :key="order" class="orders" :order="order"/>
+    <SaleItem v-for="item in sales" :key="item" :order="item"/>
 
-    <div v-if="!orders.length">
+    <div v-if="!sales.length">
       <i class="fa fa-sad-tear notfound"></i>
 
       <div class="notfound-msg">
       <span class="notfound-title">
-        Você ainda não realizou nenhuma compra.
+        Você ainda não realizou nenhuma venda.
       </span>
 
-      <span class="notfound-tip">
-        Que tal fazer tua primeira compra agora?
+        <span class="notfound-tip">
+        Que tal fazer tua primeira venda agora?
       </span>
       </div>
     </div>
@@ -26,40 +26,35 @@
   import { mapFields } from 'vuex-map-fields'
   import Panel from '@/components/Template/Panel'
   import Loader from '@/components/Template/Loader'
-  import Item from '@/components/Order/List/Item'
+  import SaleItem from '@/components/Sale/List/Item'
 
   export default {
     mounted () {
-      if (!this.orders.length) {
-        this.fetchOrders()
+      if (!this.sales.length) {
+        this.fetchSales(this.user._id.$oid)
       }
     },
     methods: {
-      ...mapActions('orders', [
-        'fetchOrders'
+      ...mapActions('sales', [
+        'fetchSales'
       ])
     },
     computed: {
       ...mapFields({
-        fetching: 'orders.fetching',
-        orders: 'orders.orders'
+        user: 'user.user',
+        fetching: 'sales.fetching',
+        sales: 'sales.sales'
       })
     },
     components: {
       Panel,
       Loader,
-      Item
+      SaleItem
     }
   }
 </script>
 
 <style lang="sass" scoped>
-  .orders
-    border-bottom: 1px solid #dddfe2
-
-    &:last-child
-      border: none
-
   i.notfound
     font-size: 90px
     margin-right: 20px

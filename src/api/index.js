@@ -187,5 +187,16 @@ export default {
    */
   async getOrder (code) {
     return (await request.get(`/order/retrieve/${code}`)).data
+  },
+  /**
+   * Busca as vendas do usuário logado.
+   *
+   * @param {Object} options
+   * @returns {Promise<any>}
+   */
+  async getSales (options) {
+    return (await request.get(`/order/retrieveBySeller`, {
+      params: options
+    })).data
   }
 }

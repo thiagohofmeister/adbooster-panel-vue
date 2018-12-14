@@ -15,12 +15,7 @@
 
       <ul class="user-fw-status">
         <li>
-          <h4>Amigos</h4>
-          <span>{{ user.friends }}</span>
-        </li>
-
-        <li>
-          <a href="#" title="">Ver perfil</a>
+          <router-link to="/profile">Ver perfil</router-link>
         </li>
       </ul>
     </div>

@@ -96,7 +96,8 @@
             previousPrice: item.product.previousPrice,
             currentPrice: item.product.currentPrice,
             quantity: item.quantity,
-            seller: item.product.sharedBy._id.$oid,
+            seller: item.product.impulses.find(impulse => impulse.origin === null).owner,
+            impulsedBy: item.product.sharedBy._id.$oid,
             impulsePrice: item.product.impulsePayoutLimit
           })),
           billingAddress: this.billingAddress,

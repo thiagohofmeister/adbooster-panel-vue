@@ -29,17 +29,10 @@ export default {
           commit('fetchOrders', { total: 0, items: [] })
         })
         .finally(() => commit('fetching', false))
-    },
-    getOrder ({ state, commit }, code) {
-      commit('fetching', true)
-
-      // commit('addOrder', code)
-
-      commit('fetching', false)
     }
   },
   getters: {
-    getOrder: (state, commit) => code => {
+    getOrder: state => code => {
       const order = state.orders.find(order => order._id.$oid === code)
       if (order) {
         return order

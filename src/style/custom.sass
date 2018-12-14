@@ -60,6 +60,10 @@
 .btn
   cursor: pointer
 
+  &:visited,
+  &:focus
+    box-shadow: none
+
 .btn-primary
   background: #e44d3a
   border-color: #e44d3a
@@ -68,14 +72,18 @@
     background: #e44d3a87
     border-color: #e44d3a87
 
-  &:visited
+  &:visited,
   &:focus
     box-shadow: none
 
-  &:active
+  &:active,
   &:hover
     background: #d34c39
     border-color: #d34c39
+
+.btn-none
+  background: transparent
+  border-color: transparent
 
 button
   cursor: pointer

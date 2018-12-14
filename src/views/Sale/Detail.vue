@@ -63,7 +63,7 @@
   import { mapFields } from 'vuex-map-fields'
   import Panel from '@/components/Template/Panel'
   import Loader from '@/components/Template/Loader'
-  import Product from '@/components/Order/Detail/Product'
+  import Product from '@/components/Sale/Detail/Product'
 
   export default {
     props: {
@@ -78,13 +78,13 @@
     },
     computed: {
       ...mapFields({
-        fetching: 'orders.fetching'
+        fetching: 'sales.fetching'
       }),
-      ...mapGetters('orders', [
-        'getOrder'
+      ...mapGetters('sales', [
+        'getSale'
       ]),
       order () {
-        return this.getOrder(this.code)
+        return this.getSale(this.code)
       }
     },
     components: {
